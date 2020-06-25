@@ -1,21 +1,24 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Reeksamen.Scripts.Container;
 
 namespace Reeksamen
 {
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : Game
+    public class GameWorld : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Global global;
 
-        public Game1()
+        public GameWorld()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            global = new Global();
         }
 
         /// <summary>
@@ -29,6 +32,7 @@ namespace Reeksamen
             // TODO: Add your initialization logic here
 
             base.Initialize();
+            global.Initialize();
         }
 
         /// <summary>
@@ -39,6 +43,7 @@ namespace Reeksamen
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            global.LoadContent(Content);
 
             // TODO: use this.Content to load your game content here
         }
@@ -65,6 +70,7 @@ namespace Reeksamen
             // TODO: Add your update logic here
 
             base.Update(gameTime);
+            global.Update(gameTime);
         }
 
         /// <summary>
@@ -78,6 +84,7 @@ namespace Reeksamen
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
+            global.Draw(spriteBatch);
         }
     }
 }
