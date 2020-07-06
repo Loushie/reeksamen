@@ -13,7 +13,6 @@ namespace Reeksamen
     {
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
-        private Player player;
         Global global;
 
         public GameWorld()
@@ -32,7 +31,6 @@ namespace Reeksamen
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            player = new Player();
             base.Initialize();
             global.Initialize();
         }
@@ -48,7 +46,7 @@ namespace Reeksamen
             global.LoadContent(Content);
 
             // TODO: use this.Content to load your game content here
-            player.LoadContent(Content);
+
         }
 
         /// <summary>
@@ -83,15 +81,12 @@ namespace Reeksamen
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin();
             // TODO: Add your drawing code here
-            player.Draw(spriteBatch);
 
 
 
-            spriteBatch.End();
-            base.Draw(gameTime);
             global.Draw(spriteBatch);
+            base.Draw(gameTime);
         }
     }
 }

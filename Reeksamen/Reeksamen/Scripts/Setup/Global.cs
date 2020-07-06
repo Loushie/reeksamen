@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Reeksamen.Scripts.Containers;
+using Reeksamen.Scripts.Scenes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,26 +11,30 @@ using System.Threading.Tasks;
 
 namespace Reeksamen.Scripts.Container
 {
-    class Global
-
+    public class Global
     {
-        public void LoadContent(ContentManager content)
-        {
-            
-        }
+        
 
         public void Initialize()
         {
+            SceneManager.Instant.Initialize();
+
+        }
+        public void LoadContent(ContentManager content)
+        {
+            SpriteContainer.Instant.LoadContent(content);
 
         }
 
         public void Update(GameTime gametime)
         {
+            SceneManager.Instant.UpdateScenes(gametime);
 
         }
 
-        public void Draw(SpriteBatch spritebatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
+            SceneManager.Instant.DrawScenes(spriteBatch);
 
         }
     }
