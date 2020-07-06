@@ -15,6 +15,8 @@ namespace Reeksamen
         private SpriteBatch spriteBatch;
         private Player player;
         Global global;
+        public static float DeltaTime { get; set; }
+        private InputHandler inputHandler;
 
         public GameWorld()
         {
@@ -32,7 +34,8 @@ namespace Reeksamen
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            player = new Player();
+            inputHandler = new InputHandler();
+            player = new Player(Vector2.Zero);
             base.Initialize();
             global.Initialize();
         }
@@ -71,6 +74,9 @@ namespace Reeksamen
                 Exit();
 
             // TODO: Add your update logic here
+
+            DeltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            inputHandler.Execute(player);
 
             base.Update(gameTime);
             global.Update(gameTime);
