@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 namespace Reeksamen.Scripts.Container
 {
     class Global
+
     {
         public void LoadContent(ContentManager content)
         {
