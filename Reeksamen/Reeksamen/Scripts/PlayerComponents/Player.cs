@@ -12,7 +12,7 @@ namespace Reeksamen.Scripts.PlayerComponents
 {
     public class Player : Component
     {
-        private float velocity      ;
+        private float playerSpeed = 50;
         public override void Awake()
         {
             base.Awake();
