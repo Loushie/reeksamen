@@ -12,7 +12,7 @@ namespace Reeksamen.Scripts.PlayerComponents
 {
     public class Player : Component
     {
-        private float playerSpeed = 50;
+        private float velocity      ;
         public override void Awake()
         {
             base.Awake();
@@ -40,7 +40,17 @@ namespace Reeksamen.Scripts.PlayerComponents
         }
         public void InputCheck(GameTime gameTime)
         {
-            Vector2 NewMove = new Vector2(0,0);
+
+
+            if (velocity != Vector2.Zero)
+            {
+                velocity.Normalize();
+            }
+
+            velocity *= speed;
+
+            position += (velocity * GameWorld.DeltaTime);
+            /*Vector2 NewMove = new Vector2(0,0);
             // Poll for current keyboard state
             KeyboardState state = Keyboard.GetState();
             if (state.IsKeyDown(Keys.A))
@@ -62,7 +72,7 @@ namespace Reeksamen.Scripts.PlayerComponents
             //TODO Fix later
             GameObject.Transform.Position += playerSpeed * NewMove * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            Console.WriteLine(GameObject.Transform.Position);
+            Console.WriteLine(GameObject.Transform.Position);*/
         }
     }
 }

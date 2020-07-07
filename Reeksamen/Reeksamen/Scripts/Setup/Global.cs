@@ -30,6 +30,7 @@ namespace Reeksamen.Scripts.Container
         {
             SceneManager.Instant.UpdateScenes(gametime);
 
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
