@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+//Lau Scene
 namespace Reeksamen.Scripts.Scenes.GameScenes
 {
     public class LauTestScene : Scene

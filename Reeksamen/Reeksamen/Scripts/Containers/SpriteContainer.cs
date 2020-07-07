@@ -6,7 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-
+//HERE LIES ALL OUR SPRITES
 namespace Reeksamen.Scripts.Containers
 {
     public class SpriteContainer

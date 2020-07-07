@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+//The Player Component Add Everything A Player Should Be Able To Here
 namespace Reeksamen.Scripts.PlayerComponents
 {
     public class Player : Component

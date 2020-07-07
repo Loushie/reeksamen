@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+//SPRITE RENDER COMPONENT ADD THIS TO AN OBJECT THAT NEEDS TO BE SEEN INGAME
 namespace Reeksamen.Scripts.Components
 {
     public class SpriteRenderer : Component

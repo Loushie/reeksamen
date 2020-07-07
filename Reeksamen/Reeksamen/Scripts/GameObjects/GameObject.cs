@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+//GameObject So That We Can Add Components And TransForms To Our GameObjects
 namespace Reeksamen.Scripts
 {
     public class GameObject

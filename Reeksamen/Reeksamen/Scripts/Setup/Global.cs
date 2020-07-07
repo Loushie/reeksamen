@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+//A Less Cluttered GameWorld
 namespace Reeksamen.Scripts.Container
 {
     public class Global

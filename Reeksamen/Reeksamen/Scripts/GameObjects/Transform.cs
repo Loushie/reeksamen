@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+//Our Transform What We Use To Move Our GameObjects
 namespace Reeksamen.Scripts
 {
     public class Transform

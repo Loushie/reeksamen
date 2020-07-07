@@ -7,7 +7,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-
+// THIS IS THE COMPONENT THAT ALL OTHER COMPONENTS ARE GONNA INHERIT
 namespace Reeksamen.Scripts.Components
 {
     public abstract class Component
