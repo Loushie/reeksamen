@@ -10,7 +10,10 @@ namespace Reeksamen.Scripts.Components
 {
     public class SpriteRenderer : Component
     {
-        private Texture2D sprite;
+        public Texture2D sprite { get; set; }
+
+        public Vector2 Origin { get; set; }
+
         private Color color = Color.White;
         private float layerDepth = 0;
         private Rectangle rectangle;
@@ -22,7 +25,18 @@ namespace Reeksamen.Scripts.Components
             rectangle = new Rectangle(0, 0, sprite.Width, sprite.Height);
         }
 
+        public override string ToString()
+        {
+            return "SpriteRenderer";
+        }
+
         public float LayerDepth { get => layerDepth; set => layerDepth = value; }
+
+        public void SetSprite(string spriteName)
+        {
+            sprite = GameWorld.Instance.Content.Load<Texture2D>(spriteName);
+        }
+
 
         public override void Awake()
         {

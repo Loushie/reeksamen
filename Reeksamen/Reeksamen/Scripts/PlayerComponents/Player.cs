@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Reeksamen.Scripts.CommandPattern;
 using Reeksamen.Scripts.Components;
+using Reeksamen.Scripts.Containers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +14,24 @@ namespace Reeksamen.Scripts.PlayerComponents
 {
     public class Player : Component
     {
-        private float playerSpeed = 50;
+        private float playerSpeed;
+
+        private InputHandler inputHandler;
+
+        private Transform transform;
+
+        public Player()
+        {
+            this.playerSpeed = 100;
+        }
+
+
+
         public override void Awake()
         {
             base.Awake();
+            //Placerer Spilleren
+            GameObject.Transform.Position = new Vector2(GameWorld.Instance.GraphicsDevice.Viewport.Width/2, GameWorld.Instance.GraphicsDevice.Viewport.Height / 2);
         }
 
         public override void Destroy()
@@ -31,14 +47,21 @@ namespace Reeksamen.Scripts.PlayerComponents
         public override void Start()
         {
             base.Start();
+            SpriteRenderer spriteRenderer = new SpriteRenderer(SpriteContainer.Instant.playerSprite);
+        }
+
+        public override string ToString()
+        {
+            return "Player";
         }
 
         public override void Update(GameTime gameTime)
         {
-            InputCheck(gameTime);
+            Move(gameTime);
             base.Update(gameTime);
+            InputHandler.Instance.Execute(player);
         }
-        public void InputCheck(GameTime gameTime)
+        public void Move(Player player, Vector2 playerSpeed)
         {
 
 
@@ -49,7 +72,7 @@ namespace Reeksamen.Scripts.PlayerComponents
 
             velocity *= speed;
 
-            position += (velocity * GameWorld.DeltaTime);
+            GameObject.Transform.Translate(velocity * GameWorld.Instance.Deltatime);
             /*Vector2 NewMove = new Vector2(0,0);
             // Poll for current keyboard state
             KeyboardState state = Keyboard.GetState();

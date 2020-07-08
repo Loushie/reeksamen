@@ -16,8 +16,26 @@ namespace Reeksamen.Scripts.CommandPattern
 
     class InputHandler
     {
+
+        private static InputHandler instance;
+        //Singleton Pattern for InputHandler
+        public static InputHandler Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new InputHandler();
+                }
+
+                return instance;
+            }
+        }
+        //Dictionary With all ketbind and Commands
          private Dictionary<Keys, ICommand> keybinds = new Dictionary<Keys, ICommand>();
 
+
+        //Creating Keybinds
          public InputHandler()
          {
              keybinds.Add(Keys.D, new MoveCommand(new Vector2(1, 0)));
@@ -25,7 +43,7 @@ namespace Reeksamen.Scripts.CommandPattern
              keybinds.Add(Keys.W, new MoveCommand(new Vector2(0, -1)));
              keybinds.Add(Keys.S, new MoveCommand(new Vector2(0, 1)));
          }
-
+        //Check if player Presses any of the keybinds
          public void Execute(Player player)
          {
              KeyboardState keyState = Keyboard.GetState();
