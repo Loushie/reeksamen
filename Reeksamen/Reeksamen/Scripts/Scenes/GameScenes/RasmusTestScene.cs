@@ -48,13 +48,22 @@ namespace Reeksamen.Scripts.Scenes.GameScenes
             SpriteRenderer spriteRenderer = new SpriteRenderer(SpriteContainer.Instant.playerSprite);
             Player player = new Player();
 
-
             playerGameObject.AddComponent(spriteRenderer);
             playerGameObject.AddComponent(player);
 
             Console.WriteLine("Rasmus Test");
             Instantiate(playerGameObject);
 
+        }
+        //Shows how to use GetComponent
+        public void ColliderEksempel(GameObject collidedGameObject)
+        {
+            if (collidedGameObject.GetComponent<Player>() != null)
+            {
+                Player player = collidedGameObject.GetComponent<Player>();
+                player.TakeDmg(5);
+                
+            }
         }
     }
 }

@@ -11,16 +11,16 @@ namespace Reeksamen.Scripts.CommandPattern
 {
     class MoveCommand : ICommand
     {
-        private Vector2 playerSpeed;
+        private Vector2 velocity;
 
-        public MoveCommand(Vector2 playerSpeed)
+        public MoveCommand(Vector2 velocity)
         {
-            this.playerSpeed = playerSpeed;
+            this.velocity = velocity;
         }
 
         public void Execute(Player player)
         {
-            player.Move(player playerSpeed);
+            player.Move(velocity);
         }
     }
 }

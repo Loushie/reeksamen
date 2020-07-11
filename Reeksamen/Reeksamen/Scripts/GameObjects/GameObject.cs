@@ -83,5 +83,16 @@ namespace Reeksamen.Scripts
                 Console.WriteLine("Error tried to add same component twice");
             }
         }
+        public T GetComponent<T>() where T : Component
+        {
+            foreach (Component item in components.Values)
+            {
+                if (item is T)
+                {
+                    return item as T;
+                }
+            }
+            return null;
+        }
     }
 }

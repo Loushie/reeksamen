@@ -17,58 +17,29 @@ namespace Reeksamen.Scripts.Container
     public class Global
     {
 
-        InputHandler playerInput;
-        private Player player;
-
-
         public void Initialize()
         {
             SceneManager.Instant.Initialize();
 
-            GameObject go = new GameObject();
-            player = new Player();
-
-            go.AddComponent(player);
-
-            go.AddComponent(new SpriteRenderer());
-
-            gameObjects.Add(go);
-
-            foreach (GameObject gameObject in gameObjects)
-            {
-                gameObject.Awake();
-            }
         }
         public void LoadContent(ContentManager content)
         {
             SpriteContainer.Instant.LoadContent(content);
 
-            foreach (GameObject gameObject in gameObjects)
-            {
-                gameObject.Start();
-            }
+
         }
 
         public void Update(GameTime gametime)
         {
             SceneManager.Instant.UpdateScenes(gametime);
-            InputHandler.Instance.Execute(player);
+            InputHandler.Instance.Execute();
 
 
-            foreach (GameObject gameObject in gameObjects)
-            {
-                gameObject.Update(gametime);
-            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             SceneManager.Instant.DrawScenes(spriteBatch);
-
-            foreach (GameObject gameObject in gameObjects)
-            {
-                gameObject.Draw(spriteBatch);
-            }
 
         }
     }

@@ -36,9 +36,6 @@ namespace Reeksamen
 
         public float DeltaTime { get; set; }
 
-        private List<GameObject> gameObjects = new List<GameObject>();
-
-
         private GameWorld()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -93,6 +90,7 @@ namespace Reeksamen
                 Exit();
 
             // TODO: Add your update logic here
+            DeltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             base.Update(gameTime);
             global.Update(gameTime);

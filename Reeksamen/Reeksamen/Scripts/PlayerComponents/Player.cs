@@ -14,18 +14,19 @@ namespace Reeksamen.Scripts.PlayerComponents
 {
     public class Player : Component
     {
-        private float playerSpeed;
+        public float CurrentHealth { get; private set; }
+        public float MaxHealth { get; private set; }
 
-        private InputHandler inputHandler;
+        public float speed;
 
         private Transform transform;
 
         public Player()
         {
-            this.playerSpeed = 100;
+            
+            InputHandler.Instance.entite = this;
+            LoadDatabaseStats();
         }
-
-
 
         public override void Awake()
         {
@@ -50,18 +51,32 @@ namespace Reeksamen.Scripts.PlayerComponents
             SpriteRenderer spriteRenderer = new SpriteRenderer(SpriteContainer.Instant.playerSprite);
         }
 
-        public override string ToString()
-        {
-            return "Player";
-        }
-
         public override void Update(GameTime gameTime)
         {
-            Move(gameTime);
             base.Update(gameTime);
-            InputHandler.Instance.Execute(player);
         }
-        public void Move(Player player, Vector2 playerSpeed)
+        private void LoadDatabaseStats()
+        {
+            //TODO Load Database Stats to Player
+            //Midlertidig Test Stats in class
+
+            MaxHealth = 100;
+            CurrentHealth = MaxHealth;
+            this.speed = 100;
+        }
+        public void TakeDmg(int dmg)
+        {
+            CurrentHealth -= dmg;
+            if (CurrentHealth <= 0)
+            {
+                PlayerDeath();
+            }
+        }
+        private void PlayerDeath()
+        {
+            //TODO level restart?
+        }
+        public void Move(Vector2 velocity)
         {
 
 
@@ -71,31 +86,10 @@ namespace Reeksamen.Scripts.PlayerComponents
             }
 
             velocity *= speed;
+            Console.WriteLine(velocity);
+            Console.WriteLine(GameObject.Transform.Position);
 
-            GameObject.Transform.Translate(velocity * GameWorld.Instance.Deltatime);
-            /*Vector2 NewMove = new Vector2(0,0);
-            // Poll for current keyboard state
-            KeyboardState state = Keyboard.GetState();
-            if (state.IsKeyDown(Keys.A))
-            {
-                NewMove += new Vector2(-1, 0);
-            }
-            if (state.IsKeyDown(Keys.S))
-            {
-                NewMove += new Vector2(0, 1);
-            }
-            if (state.IsKeyDown(Keys.D))
-            {
-                NewMove += new Vector2(1, 0);
-            }
-            if (state.IsKeyDown(Keys.W))
-            {
-                NewMove += new Vector2(0, -1);
-            }
-            //TODO Fix later
-            GameObject.Transform.Position += playerSpeed * NewMove * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-            Console.WriteLine(GameObject.Transform.Position);*/
+            GameObject.Transform.Translate(velocity * GameWorld.Instance.DeltaTime);
         }
     }
 }
