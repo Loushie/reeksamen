@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Reeksamen.SqliteFramework
 {
-    public class AutoFactory<T> where T : new ()
+    public class AutoFactory<T> where T : new()
     {
         private string table;
         private Mapper<T> mapper = new Mapper<T>();
@@ -26,7 +26,7 @@ namespace Reeksamen.SqliteFramework
 
             foreach (var map in mappings)
             {
-                  if (map.Key.ToLower() != "id" && pro.GetType().GetProperty(map.Key).GetValue(pro, null) != null)
+                if (map.Key.ToLower() != "id" && pro.GetType().GetProperty(map.Key).GetValue(pro, null) != null)
                 {
                     columns += map.Value + ", ";
                     parameters += "@" + map.Key + ", ";
@@ -34,13 +34,13 @@ namespace Reeksamen.SqliteFramework
             }
 
             columns = columns.Substring(0, columns.Length - 2);
-            columns = parameters.Substring(0, columns.Length - 2);
+            parameters = parameters.Substring(0, parameters.Length - 2);
 
-            using(var cmd = new SQLiteCommand($"INSERT INTO{table} ({columns}) VALUES ({parameters}); SELECT LAST_INSERT_ROWID() as curID; ", Conn.CreateConnection()))
+            using (var cmd = new SQLiteCommand($"INSERT INTO{table} ({columns}) VALUES ({parameters}); SELECT LAST_INSERT_ROWID() as curID; ", Conn.CreateConnection()))
             {
                 foreach (var prop in mappings)
                 {
-                    if(prop.Key.ToLower() != "id" && pro.GetType().GetProperty(prop.Key).GetValue(pro, null) != null)
+                    if (prop.Key.ToLower() != "id" && pro.GetType().GetProperty(prop.Key).GetValue(pro, null) != null)
                     {
                         cmd.Parameters.AddWithValue(prop.Key, pro.GetType().GetProperty(prop.Key).GetValue(pro, null));
                     }
@@ -62,7 +62,7 @@ namespace Reeksamen.SqliteFramework
 
         public T Get(int ID)
         {
-            using(var cmd = new SQLiteCommand($"SELECT * FROM {table} WHERE ID=@ID ", Conn.CreateConnection()))
+            using (var cmd = new SQLiteCommand($"SELECT * FROM {table} WHERE ID=@ID ", Conn.CreateConnection()))
             {
                 cmd.Parameters.AddWithValue("@ID", ID);
 
@@ -82,7 +82,7 @@ namespace Reeksamen.SqliteFramework
 
         public List<T> GetAll()
         {
-            using(var cmd = new SQLiteCommand($"SELECT * FROM {table}", Conn.CreateConnection()))
+            using (var cmd = new SQLiteCommand($"SELECT * FROM {table}", Conn.CreateConnection()))
             {
                 List<T> list = mapper.MapList(cmd.ExecuteReader());
                 cmd.Connection.Close();
@@ -92,7 +92,7 @@ namespace Reeksamen.SqliteFramework
 
         public void Delete(int ID)
         {
-            using(var cmd = new SQLiteCommand($"DELETE FROM {table} WHERE ID=@ID", Conn.CreateConnection()))
+            using (var cmd = new SQLiteCommand($"DELETE FROM {table} WHERE ID=@ID", Conn.CreateConnection()))
             {
                 cmd.Parameters.AddWithValue("@ID", ID);
                 cmd.ExecuteNonQuery();
@@ -112,7 +112,7 @@ namespace Reeksamen.SqliteFramework
 
         public List<T> GetBy(string column, object value)
         {
-            using(var cmd = new SQLiteCommand($"SELECT * FROM {table} WHERE {column}=@value", Conn.CreateConnection()))
+            using (var cmd = new SQLiteCommand($"SELECT * FROM {table} WHERE {column}=@value", Conn.CreateConnection()))
             {
                 cmd.Parameters.AddWithValue("@value", value);
 
@@ -129,14 +129,14 @@ namespace Reeksamen.SqliteFramework
 
             foreach (var map in mappings)
             {
-                if(map.Key.ToLower() != "id")
+                if (map.Key.ToLower() != "id")
                 {
-                    if (pro.GetType().GetProperty(map.Key).GetValue(pro,null) != null)
+                    if (pro.GetType().GetProperty(map.Key).GetValue(pro, null) != null)
                     {
                         fAndP += map.Value + "=@" + map.Key + ", ";
                     }
                 }
-                
+
             }
             fAndP = fAndP.Substring(0, fAndP.Length - 2);
 

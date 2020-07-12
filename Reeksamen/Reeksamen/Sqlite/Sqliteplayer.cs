@@ -22,7 +22,7 @@ namespace Reeksamen.Sqlite
             AutoTable<Player_Table> autoTable = new AutoTable<Player_Table>();
             autoTable.MakeTable();
 
-            Player_Factory pf = new Player_Factory();
+            Player_TableFac pf = new Player_TableFac();
 
             Player_Table pt = new Player_Table(100, 250);
             pf.Insert(pt);

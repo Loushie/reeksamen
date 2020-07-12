@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Reeksamen.SqliteFramework.Factories
 {
-    class Player_Factory : AutoFactory<Player_Table>
+    class Player_TableFac : AutoFactory<Player_Table>
     {
 
     }

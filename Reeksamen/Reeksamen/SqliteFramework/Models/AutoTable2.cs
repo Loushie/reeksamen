@@ -25,7 +25,7 @@ namespace Reeksamen.SqliteFramework.Models
             {
                 sql += map.Key + " ";
 
-                if (map.Value == "int32" || map.Value == "int64" || map.Value == "int16")
+                if (map.Value == "Int32" || map.Value == "Int64" || map.Value == "Int16")
                 {
                     sql += "INTEGER ";
                 }

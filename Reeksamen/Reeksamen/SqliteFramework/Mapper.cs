@@ -72,6 +72,8 @@ namespace Reeksamen.SqliteFramework
             {
                 mappings.Add(prop.Name, prop.Name);
             }
+
+            return mappings;
         }
     }
 }

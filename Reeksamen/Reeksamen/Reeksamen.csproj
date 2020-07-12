@@ -75,7 +75,7 @@
     <Compile Include="SqliteFramework\AutoFactory.cs" />
     <Compile Include="SqliteFramework\AutoTable.cs" />
     <Compile Include="SqliteFramework\Conn.cs" />
-    <Compile Include="SqliteFramework\Factories\Player_Factory.cs" />
+    <Compile Include="SqliteFramework\Factories\Player_TableFac.cs" />
     <Compile Include="SqliteFramework\Mapper.cs" />
     <Compile Include="SqliteFramework\Models\AutoTable2.cs" />
     <Compile Include="SqliteFramework\Models\Player_Table.cs" />
