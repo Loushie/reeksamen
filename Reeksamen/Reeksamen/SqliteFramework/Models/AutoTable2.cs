@@ -1,43 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
 using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Reeksamen.SqliteFramework
+namespace Reeksamen.SqliteFramework.Models
 {
-    public class AutoTable<T> where T : new ()
+    class AutoTable2
     {
         private Dictionary<string, string> _mappings { get; set; }
 
-        public AutoTable()
+        public AutoTable2()
         {
-            _mappings = CreateTableDictionary();
+            
         }
 
-        public void MakeTable()
+        public void MakeTable<T>()
         {
+            _mappings = CreateTableDictionary<T>();
+
             string sql = "";
-            foreach (var map in _mappings) 
+            foreach (var map in _mappings)
             {
                 sql += map.Key + " ";
 
-                if(map.Value == "int32" || map.Value == "int64" || map.Value == "int16")
+                if (map.Value == "int32" || map.Value == "int64" || map.Value == "int16")
                 {
                     sql += "INTEGER ";
                 }
-                else if(map.Value == "Single")
+                else if (map.Value == "Single")
                 {
                     sql += "REAL";
                 }
-                else if(map.Value == "Boolean")
+                else if (map.Value == "Boolean")
                 {
                     sql += "INTEGER ";
                 }
-                else if(map.Value == "String")
+                else if (map.Value == "String")
                 {
                     sql += "VARCHAR ";
                 }
@@ -46,7 +46,7 @@ namespace Reeksamen.SqliteFramework
                     sql += map.Value + " ";
                 }
 
-                if(map.Key == "ID")
+                if (map.Key == "ID")
                 {
                     sql += " PRIMARY KEY AUTOINCREMENT ";
                 }
@@ -62,7 +62,7 @@ namespace Reeksamen.SqliteFramework
             }
         }
 
-        private Dictionary<string, string> CreateTableDictionary()
+        private Dictionary<string, string> CreateTableDictionary<T>()
         {
             var mappings = new Dictionary<string, string>();
             var props = typeof(T).GetProperties().Where(p => p.CanWrite);
