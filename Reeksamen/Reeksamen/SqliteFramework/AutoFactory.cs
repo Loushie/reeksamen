@@ -122,7 +122,7 @@ namespace Reeksamen.SqliteFramework
             }
         }
 
-        public void update(T pro)
+        public void Update(T pro)
         {
             string fAndP = "";
             var mappings = mapper.CreateMap();
@@ -136,21 +136,22 @@ namespace Reeksamen.SqliteFramework
                         fAndP += map.Value + "=@" + map.Key + ", ";
                     }
                 }
-                fAndP = fAndP.Substring(0, fAndP.Length - 2);
+                
+            }
+            fAndP = fAndP.Substring(0, fAndP.Length - 2);
 
-                using (var cmd = new SQLiteCommand($"UPDATE {table} SET {fAndP} WHERE ID=@id", Conn.CreateConnection()))
+            using (var cmd = new SQLiteCommand($"UPDATE {table} SET {fAndP} WHERE ID=@id", Conn.CreateConnection()))
+            {
+                foreach (var prop in mappings)
                 {
-                    foreach (var prop in mappings)
+                    if (pro.GetType().GetProperty(prop.Key).GetValue(pro, null) != null)
                     {
-                        if (pro.GetType().GetProperty(prop.Key).GetValue(pro, null) != null)
-                        {
-                            cmd.Parameters.AddWithValue(prop.Key, pro.GetType().GetProperty(prop.Key).GetValue(pro, null));
-                        }
+                        cmd.Parameters.AddWithValue(prop.Key, pro.GetType().GetProperty(prop.Key).GetValue(pro, null));
                     }
-
-                    cmd.ExecuteNonQuery();
-                    cmd.Connection.Close();
                 }
+
+                cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
             }
         }
     }
