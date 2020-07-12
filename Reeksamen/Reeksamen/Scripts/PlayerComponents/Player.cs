@@ -20,7 +20,7 @@ namespace Reeksamen.Scripts.PlayerComponents
         public float speed;
 
         private Transform transform;
-
+        private CanShoot canshoot;
         public Player()
         {
             
@@ -30,9 +30,19 @@ namespace Reeksamen.Scripts.PlayerComponents
 
         public override void Awake()
         {
+            canshoot = GameObject.GetComponent<CanShoot>();
             base.Awake();
             //Placerer Spilleren
             GameObject.Transform.Position = new Vector2(GameWorld.Instance.GraphicsDevice.Viewport.Width/2, GameWorld.Instance.GraphicsDevice.Viewport.Height / 2);
+        }
+
+        public void Playershoots()
+        {
+            if (canshoot != null)
+            {
+                canshoot.Shoot();
+            }
+            
         }
 
         public override void Destroy()

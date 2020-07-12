@@ -43,6 +43,7 @@ namespace Reeksamen.Scripts.CommandPattern
              keybinds.Add(Keys.A, new MoveCommand(new Vector2(-1, 0)));
              keybinds.Add(Keys.W, new MoveCommand(new Vector2(0, -1)));
              keybinds.Add(Keys.S, new MoveCommand(new Vector2(0, 1)));
+             keybinds.Add(Keys.K, new ShootCommand());
          }
         //Check if player Presses any of the keybinds
          public void Execute()
