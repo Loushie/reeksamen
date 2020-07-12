@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Reeksamen.Scripts.CommandPattern;
 using Reeksamen.Scripts.Components;
+using Reeksamen.Scripts.Containers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +14,35 @@ namespace Reeksamen.Scripts.PlayerComponents
 {
     public class Player : Component
     {
-        private float velocity      ;
+        public float CurrentHealth { get; private set; }
+        public float MaxHealth { get; private set; }
+
+        public float speed;
+
+        private Transform transform;
+        private CanShoot canshoot;
+        public Player()
+        {
+            
+            InputHandler.Instance.entite = this;
+            LoadDatabaseStats();
+        }
+
         public override void Awake()
         {
+            canshoot = GameObject.GetComponent<CanShoot>();
             base.Awake();
+            //Placerer Spilleren
+            GameObject.Transform.Position = new Vector2(GameWorld.Instance.GraphicsDevice.Viewport.Width/2, GameWorld.Instance.GraphicsDevice.Viewport.Height / 2);
+        }
+
+        public void Playershoots()
+        {
+            if (canshoot != null)
+            {
+                canshoot.Shoot();
+            }
+            
         }
 
         public override void Destroy()
@@ -31,14 +58,35 @@ namespace Reeksamen.Scripts.PlayerComponents
         public override void Start()
         {
             base.Start();
+            SpriteRenderer spriteRenderer = new SpriteRenderer(SpriteContainer.Instant.playerSprite);
         }
 
         public override void Update(GameTime gameTime)
         {
-            InputCheck(gameTime);
             base.Update(gameTime);
         }
-        public void InputCheck(GameTime gameTime)
+        private void LoadDatabaseStats()
+        {
+            //TODO Load Database Stats to Player
+            //Midlertidig Test Stats in class
+
+            MaxHealth = 100;
+            CurrentHealth = MaxHealth;
+            this.speed = 100;
+        }
+        public void TakeDmg(int dmg)
+        {
+            CurrentHealth -= dmg;
+            if (CurrentHealth <= 0)
+            {
+                PlayerDeath();
+            }
+        }
+        private void PlayerDeath()
+        {
+            //TODO level restart?
+        }
+        public void Move(Vector2 velocity)
         {
 
 
@@ -48,31 +96,10 @@ namespace Reeksamen.Scripts.PlayerComponents
             }
 
             velocity *= speed;
+            Console.WriteLine(velocity);
+            Console.WriteLine(GameObject.Transform.Position);
 
-            position += (velocity * GameWorld.DeltaTime);
-            /*Vector2 NewMove = new Vector2(0,0);
-            // Poll for current keyboard state
-            KeyboardState state = Keyboard.GetState();
-            if (state.IsKeyDown(Keys.A))
-            {
-                NewMove += new Vector2(-1, 0);
-            }
-            if (state.IsKeyDown(Keys.S))
-            {
-                NewMove += new Vector2(0, 1);
-            }
-            if (state.IsKeyDown(Keys.D))
-            {
-                NewMove += new Vector2(1, 0);
-            }
-            if (state.IsKeyDown(Keys.W))
-            {
-                NewMove += new Vector2(0, -1);
-            }
-            //TODO Fix later
-            GameObject.Transform.Position += playerSpeed * NewMove * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-            Console.WriteLine(GameObject.Transform.Position);*/
+            GameObject.Transform.Translate(velocity * GameWorld.Instance.DeltaTime);
         }
     }
 }

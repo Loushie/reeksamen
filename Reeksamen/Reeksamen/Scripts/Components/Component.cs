@@ -14,14 +14,15 @@ namespace Reeksamen.Scripts.Components
     {
         public GameObject GameObject { get; set; }
 
-        public bool IsEnable { get; set; }
+        public bool IsEnable { get; set; } = true;
 
 
-
+        //Kaldes en gang når den startes
         public virtual void Awake()
         {
 
         }
+        //Køres efter Awake
         public virtual void Start()
         {
 

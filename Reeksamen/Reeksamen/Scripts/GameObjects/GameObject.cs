@@ -13,9 +13,10 @@ namespace Reeksamen.Scripts
     public class GameObject
     {
         private Dictionary<string, Component> components = new Dictionary<string, Component>();
-        public Transform Transform { get; set; }
+        public Transform Transform { get; private set; }
         public Dictionary<string, Component> Components { get => components; set => components = value; }
 
+        public string Tag { get; set; }
         public Scene MyScene { get; set; }
 
         public GameObject()
@@ -41,14 +42,20 @@ namespace Reeksamen.Scripts
         {
             foreach (Component component in Components.Values)
             {
-                component.Update(gameTime);
+                if (component.IsEnable)
+                {
+                    component.Update(gameTime);
+                }
             }
         }
         public void Draw(SpriteBatch spriteBatch)
         {
             foreach (Component component in Components.Values)
             {
-                component.Draw(spriteBatch);
+                if (component.IsEnable)
+                {
+                    component.Draw(spriteBatch);
+                }
             }
         }
         public void Destroy()
@@ -75,6 +82,17 @@ namespace Reeksamen.Scripts
             {
                 Console.WriteLine("Error tried to add same component twice");
             }
+        }
+        public T GetComponent<T>() where T : Component
+        {
+            foreach (Component item in components.Values)
+            {
+                if (item is T)
+                {
+                    return item as T;
+                }
+            }
+            return null;
         }
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Reeksamen.Scripts.Components;
 using Reeksamen.Scripts.Containers;
+using Reeksamen.Scripts.PlayerComponents;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,12 +40,24 @@ namespace Reeksamen.Scripts.Scenes.GameScenes
         }
         public void LauTestHalloj()
         {
-            GameObject playerGameObject = new GameObject();
-            playerGameObject.Transform.Position = new Vector2(50, 50);
+            GameObject playergameobject = new GameObject();
+            GameObject enemygameobject = new GameObject();
+
+
             SpriteRenderer spriteRenderer = new SpriteRenderer(SpriteContainer.Instant.playerSprite);
-            playerGameObject.AddComponent(spriteRenderer);
-            Console.WriteLine("Lau Test");
-            Instantiate(playerGameObject);
+            Player player = new Player();
+            CanShoot canShoot = new CanShoot();
+
+            playergameobject.AddComponent(spriteRenderer);
+            playergameobject.AddComponent(player);
+            playergameobject.AddComponent(canShoot);
+            
+            enemygameobject.AddComponent(canShoot);
+
+
+
+            Instantiate(playergameobject);
+
         }
     }
 }

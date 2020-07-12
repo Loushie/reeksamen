@@ -1,8 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Reeksamen.Scripts;
 using Reeksamen.Scripts.Container;
+using Reeksamen.Scripts.PlayerComponents;
+using System.Collections.Generic;
 
 namespace Reeksamen
 {
@@ -11,11 +14,29 @@ namespace Reeksamen
     /// </summary>
     public class GameWorld : Game
     {
+
+        private static GameWorld instance;
+        //Singleton Pattern for InputHandler
+        public static GameWorld Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new GameWorld();
+                }
+
+                return instance;
+            }
+        }
+
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         Global global;
 
-        public GameWorld()
+        public float DeltaTime { get; set; }
+
+        private GameWorld()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -69,6 +90,7 @@ namespace Reeksamen
                 Exit();
 
             // TODO: Add your update logic here
+            DeltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             base.Update(gameTime);
             global.Update(gameTime);

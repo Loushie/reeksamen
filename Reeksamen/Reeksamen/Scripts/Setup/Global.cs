@@ -1,7 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Reeksamen.Scripts.CommandPattern;
+using Reeksamen.Scripts.Components;
 using Reeksamen.Scripts.Containers;
+using Reeksamen.Scripts.PlayerComponents;
 using Reeksamen.Scripts.Scenes;
 using System;
 using System.Collections.Generic;
@@ -13,7 +16,6 @@ namespace Reeksamen.Scripts.Container
 {
     public class Global
     {
-        
 
         public void Initialize()
         {
@@ -24,11 +26,13 @@ namespace Reeksamen.Scripts.Container
         {
             SpriteContainer.Instant.LoadContent(content);
 
+
         }
 
         public void Update(GameTime gametime)
         {
             SceneManager.Instant.UpdateScenes(gametime);
+            InputHandler.Instance.Execute();
 
 
         }
