@@ -28,10 +28,12 @@ namespace Reeksamen.Scripts.Containers
         #endregion
 
         public Texture2D playerSprite;
+        public Texture2D wallSprite;
 
         public void LoadContent(ContentManager content)
         {
             playerSprite = content.Load<Texture2D>("Player");
+            wallSprite = content.Load<Texture2D>("Wall");
         }
 
 

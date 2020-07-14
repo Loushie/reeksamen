@@ -7,6 +7,7 @@ using Reeksamen.Scripts.PlayerComponents;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Management.Instrumentation;
 using System.Text;
 using System.Threading.Tasks;
 //Rasmus Scene
@@ -42,17 +43,26 @@ namespace Reeksamen.Scripts.Scenes.GameScenes
 
         public void RasmusTestHalloj()
         {
-
+            //Creating the player
             GameObject playerGameObject = new GameObject();
             playerGameObject.Transform.Position = new Vector2(100, 100);
             SpriteRenderer spriteRenderer = new SpriteRenderer(SpriteContainer.Instant.playerSprite);
             Player player = new Player();
-
             playerGameObject.AddComponent(spriteRenderer);
             playerGameObject.AddComponent(player);
-
+            playerGameObject.Tag = "Player";
             Console.WriteLine("Rasmus Test");
             Instantiate(playerGameObject);
+            //Creating Wall
+            GameObject wallGameObject = new GameObject();
+            wallGameObject.Transform.Position = new Vector2(150, 150);
+            SpriteRenderer spriteRenderer1 = new SpriteRenderer(SpriteContainer.Instant.wallSprite);
+            Wall wall = new Wall();
+            wallGameObject.AddComponent(spriteRenderer);
+            wallGameObject.AddComponent(wall);
+            wallGameObject.Tag = "Terrain";
+            Instantiate(wallGameObject);    
+
 
         }
         //Shows how to use GetComponent

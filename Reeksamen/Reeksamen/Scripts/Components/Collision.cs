@@ -11,9 +11,8 @@ namespace Reeksamen.Scripts.Components
 {
     class Collision : Component
     {
-        private Rectangle rectangle;
+        SpriteBatch Rectangle;
 
-        Player player = GroundCollisionDetection.GetComponent<Player>();
         public override void Awake()
         {
             base.Awake();
