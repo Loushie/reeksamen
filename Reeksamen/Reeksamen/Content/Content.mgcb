@@ -97,7 +97,7 @@
 /processorParam:TextureFormat=Color
 /build:Player(1).png;Player.png
 
-#begin Player(1).png
+#begin Player.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -107,9 +107,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Player(1).png
+/build:Player.png
 
-#begin Wall(1).png
+#begin Wall.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -119,7 +119,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Wall(1).png
+/build:Wall.png
 
 #begin zombie.png
 /importer:TextureImporter
