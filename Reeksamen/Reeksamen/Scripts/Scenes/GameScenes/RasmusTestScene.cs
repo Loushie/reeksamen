@@ -48,7 +48,7 @@ namespace Reeksamen.Scripts.Scenes.GameScenes
             playerGameObject.Transform.Position = new Vector2(100, 100);
             SpriteRenderer spriteRenderer = new SpriteRenderer(SpriteContainer.Instant.playerSprite);
             Player player = new Player();
-            player.playerHitBox = new Rectangle(spriteRenderer.sprite.Width, spriteRenderer.sprite.Height);
+            player.playerHitBox = spriteRenderer.sprite.Bounds;
             playerGameObject.AddComponent(spriteRenderer);
             playerGameObject.AddComponent(player);
             playerGameObject.Tag = "Player";
