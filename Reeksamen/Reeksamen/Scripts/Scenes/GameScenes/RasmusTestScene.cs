@@ -48,6 +48,7 @@ namespace Reeksamen.Scripts.Scenes.GameScenes
             playerGameObject.Transform.Position = new Vector2(100, 100);
             SpriteRenderer spriteRenderer = new SpriteRenderer(SpriteContainer.Instant.playerSprite);
             Player player = new Player();
+            player.playerHitBox = new Rectangle(spriteRenderer.sprite.Width, spriteRenderer.sprite.Height);
             playerGameObject.AddComponent(spriteRenderer);
             playerGameObject.AddComponent(player);
             playerGameObject.Tag = "Player";
@@ -60,6 +61,13 @@ namespace Reeksamen.Scripts.Scenes.GameScenes
             wallGameObject.AddComponent(spriteRenderer);
             wallGameObject.Tag = "Terrain";
             Instantiate(wallGameObject);
+            //Creating Wall
+            GameObject wallGameObject1 = new GameObject();
+            wallGameObject1.Transform.Position = new Vector2(173, 150);
+            spriteRenderer = new SpriteRenderer(SpriteContainer.Instant.wallSprite);
+            wallGameObject1.AddComponent(spriteRenderer);
+            wallGameObject1.Tag = "Terrain";
+            Instantiate(wallGameObject1);
 
 
         }

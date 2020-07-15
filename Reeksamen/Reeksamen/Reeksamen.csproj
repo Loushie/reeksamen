@@ -53,7 +53,6 @@
     <Compile Include="Scripts\Components\Collision.cs" />
     <Compile Include="Scripts\Components\Component.cs" />
     <Compile Include="Scripts\Components\SpriteRenderer.cs" />
-    <Compile Include="Scripts\Components\Wall.cs" />
     <Compile Include="Scripts\Containers\SceneContainers.cs" />
     <Compile Include="Scripts\Containers\SpriteContainer.cs" />
     <Compile Include="Scripts\Enemies\EnemyZombie.cs" />

@@ -19,7 +19,7 @@ namespace Reeksamen.Scripts.PlayerComponents
 
         public float speed;
 
-        private Transform transform;
+        public Rectangle playerHitBox { get}
 
         public Player()
         {

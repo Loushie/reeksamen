@@ -11,7 +11,7 @@ namespace Reeksamen.Scripts.Components
 {
     class Collision : Component
     {
-        
+        Rectangle rectangle;
 
         public override void Awake()
         {
@@ -30,6 +30,7 @@ namespace Reeksamen.Scripts.Components
 
         public override void Start()
         {
+
             base.Start();
         }
 
