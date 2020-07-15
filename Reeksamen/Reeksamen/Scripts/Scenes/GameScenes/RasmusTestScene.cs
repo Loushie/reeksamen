@@ -57,7 +57,6 @@ namespace Reeksamen.Scripts.Scenes.GameScenes
             GameObject wallGameObject = new GameObject();
             wallGameObject.Transform.Position = new Vector2(150, 150);
             spriteRenderer = new SpriteRenderer(SpriteContainer.Instant.wallSprite);
-            //Wall wall = new Wall();
             wallGameObject.AddComponent(spriteRenderer);
             wallGameObject.Tag = "Terrain";
             Instantiate(wallGameObject);
