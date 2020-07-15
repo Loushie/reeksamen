@@ -32,8 +32,8 @@ namespace Reeksamen.Scripts.Containers
 
         public void LoadContent(ContentManager content)
         {
-            playerSprite = content.Load<Texture2D>("Player");
-            wallSprite = content.Load<Texture2D>("Wall");
+            playerSprite = content.Load<Texture2D>("GameSprites/Player");
+            wallSprite = content.Load<Texture2D>("GameSprites/Wall");
         }
 
 
