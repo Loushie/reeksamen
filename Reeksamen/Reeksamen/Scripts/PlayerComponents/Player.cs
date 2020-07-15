@@ -31,8 +31,7 @@ namespace Reeksamen.Scripts.PlayerComponents
         public override void Awake()
         {
             base.Awake();
-            //Placerer Spilleren
-            GameObject.Transform.Position = new Vector2(GameWorld.Instance.GraphicsDevice.Viewport.Width/2, GameWorld.Instance.GraphicsDevice.Viewport.Height / 2);
+            
         }
 
         public override void Destroy()
@@ -48,7 +47,7 @@ namespace Reeksamen.Scripts.PlayerComponents
         public override void Start()
         {
             base.Start();
-            SpriteRenderer spriteRenderer = new SpriteRenderer(SpriteContainer.Instant.playerSprite);
+            
         }
 
         public override void Update(GameTime gameTime)
