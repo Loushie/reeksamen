@@ -21,6 +21,13 @@ namespace Reeksamen.Scripts.PlayerComponents
 
         private Transform transform;
         private CanShoot canshoot;
+        public Rectangle playerHitBox;
+
+        public Player(Rectangle playerHitBox)
+        {
+            this.playerHitBox = playerHitBox;
+        }
+
         public Player()
         {
             
@@ -32,8 +39,7 @@ namespace Reeksamen.Scripts.PlayerComponents
         {
             canshoot = GameObject.GetComponent<CanShoot>();
             base.Awake();
-            //Placerer Spilleren
-            GameObject.Transform.Position = new Vector2(GameWorld.Instance.GraphicsDevice.Viewport.Width/2, GameWorld.Instance.GraphicsDevice.Viewport.Height / 2);
+            
         }
 
         public void Playershoots()
@@ -58,7 +64,7 @@ namespace Reeksamen.Scripts.PlayerComponents
         public override void Start()
         {
             base.Start();
-            SpriteRenderer spriteRenderer = new SpriteRenderer(SpriteContainer.Instant.playerSprite);
+            
         }
 
         public override void Update(GameTime gameTime)

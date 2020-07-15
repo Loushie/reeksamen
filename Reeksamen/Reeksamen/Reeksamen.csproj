@@ -50,8 +50,7 @@
     <Compile Include="Scripts\CommandPattern\ICommand.cs" />
     <Compile Include="Scripts\CommandPattern\InputHandler.cs" />
     <Compile Include="Scripts\CommandPattern\MoveCommand.cs" />
-    <Compile Include="Scripts\CommandPattern\ShootCommand.cs" />
-    <Compile Include="Scripts\Components\CanShoot.cs" />
+    <Compile Include="Scripts\Components\Collision.cs" />
     <Compile Include="Scripts\Components\Component.cs" />
     <Compile Include="Scripts\Components\SpriteRenderer.cs" />
     <Compile Include="Scripts\Containers\SceneContainers.cs" />
