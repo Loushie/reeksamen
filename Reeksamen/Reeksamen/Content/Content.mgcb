@@ -87,10 +87,14 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #begin Player.png
 =======
 #begin Player(1).png
+>>>>>>> ContentUpload
+=======
+#begin Player.png
 >>>>>>> ContentUpload
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -101,9 +105,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Player(1).png
+/build:Player.png
 
-#begin Wall(1).png
+#begin Wall.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -113,7 +117,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Wall(1).png
+/build:Wall.png
 
 <<<<<<< HEAD
 >>>>>>> ContentUpload
