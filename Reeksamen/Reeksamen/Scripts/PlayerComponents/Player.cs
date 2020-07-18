@@ -20,7 +20,7 @@ namespace Reeksamen.Scripts.PlayerComponents
         public float speed;
 
         private Transform transform;
-        private CanShoot canshoot;
+        //private CanShoot canshoot;
         public Rectangle playerHitBox;
 
         public Player(Rectangle playerHitBox)
@@ -37,17 +37,17 @@ namespace Reeksamen.Scripts.PlayerComponents
 
         public override void Awake()
         {
-            canshoot = GameObject.GetComponent<CanShoot>();
+            //canshoot = GameObject.GetComponent<CanShoot>();
             base.Awake();
             
         }
 
         public void Playershoots()
         {
-            if (canshoot != null)
-            {
-                canshoot.Shoot();
-            }
+            //if (canshoot != null)
+            //{
+            //    canshoot.Shoot();
+            //}
             
         }
 

@@ -48,9 +48,14 @@ namespace Reeksamen.Scripts.Scenes.GameScenes
             playerGameObject.Transform.Position = new Vector2(100, 100);
             SpriteRenderer spriteRenderer = new SpriteRenderer(SpriteContainer.Instant.playerSprite);
             Player player = new Player();
-            player.playerHitBox = spriteRenderer.sprite.Bounds;
+            Collision collision = new Collision();
             playerGameObject.AddComponent(spriteRenderer);
             playerGameObject.AddComponent(player);
+            playerGameObject.AddComponent(collision);
+            player.playerHitBox = spriteRenderer.sprite.Bounds;
+            collision.rectangle = player.playerHitBox;
+
+
             playerGameObject.Tag = "Player";
             Console.WriteLine("Rasmus Test");
             Instantiate(playerGameObject);
@@ -58,9 +63,13 @@ namespace Reeksamen.Scripts.Scenes.GameScenes
             GameObject wallGameObject = new GameObject();
             wallGameObject.Transform.Position = new Vector2(150, 150);
             spriteRenderer = new SpriteRenderer(SpriteContainer.Instant.wallSprite);
+            collision = new Collision();
             wallGameObject.AddComponent(spriteRenderer);
+            wallGameObject.AddComponent(collision);
             wallGameObject.Tag = "Terrain";
             Instantiate(wallGameObject);
+            collision.rectangle = spriteRenderer.sprite.Bounds;
+
             //Creating Wall
             GameObject wallGameObject1 = new GameObject();
             wallGameObject1.Transform.Position = new Vector2(173, 150);

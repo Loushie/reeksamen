@@ -11,7 +11,7 @@ namespace Reeksamen.Scripts.Components
 {
     class Collision : Component
     {
-        Rectangle rectangle;
+        public Rectangle rectangle;
 
         public override void Awake()
         {
@@ -36,39 +36,46 @@ namespace Reeksamen.Scripts.Components
 
         public override void Update(GameTime gameTime)
         {
+            GroundCollisionDetection(GameObject);
             base.Update(gameTime);
         }
-        //public void GroundCollisionDetection(GameObject other)
-        //{
+        public void GroundCollisionDetection(GameObject other)
+        {
+
         //    //t = terrain | this = player/enemy
-        //    if (other.Tag == "Terrain" && other.Tag != "Terrain")
-        //        {
+            if (other.Tag == "Terrain" && other.Tag != "Terrain")
+               {
+                Console.WriteLine("im being run ");
         //            //Bottom Player Collision //(this.spriteRect.Top + this.velocity.Y < t.spriteRect.Bottom && this.spriteRect.Bottom > t.spriteRect.Bottom && this.spriteRect.Right > t.spriteRect.Left && this.spriteRect.Left < t.spriteRect.Right)
-        //            if (this.rectangle.Bottom + actualVelocity.Y > other.spriteRect.Top && this.spriteRect.Top < other.spriteRect.Top && this.spriteRect.Right > other.spriteRect.Left && this.spriteRect.Left < other.spriteRect.Right /*&& isGrounded == false*/)
-        //            {
-        //                gamePosition.Y = other.gamePosition.Y - (spriteRect.Height + other.spriteRect.Height) / 2;
-        //                if (velocity.Y < 0) velocity.Y = 0;
-        //                isGrounded = true;
-        //                standingOn = other;
-        //            }
+                    if (this.rectangle.Bottom > other.rectangle.Top && this.rectangle.Top < other.rectangle.Top && this.rectangle.Right > other.rectangle.Left && this.rectangle.Left < other.rectangle.Right /*&& isGrounded == false*/)
+                    {
+                    //GameObject.Transform.Position.Y = other.gamePosition.Y - (spriteRect.Height + other.spriteRect.Height) / 2;
+                    //if (velocity.Y < 0) velocity.Y = 0;
+                    //isGrounded = true;
+                    //standingOn = other;
+                    Console.WriteLine("I HIT A WALL1");
+                }
         //            //Top Player Collision //(this.spriteRect.Bottom + this.velocity.Y > t.spriteRect.Top && this.spriteRect.Top < t.spriteRect.Top && this.spriteRect.Right > t.spriteRect.Left && this.spriteRect.Left < t.spriteRect.Right /*&& isGrounded == false*/)
-        //            if (this.spriteRect.Top + actualVelocity.Y < other.spriteRect.Bottom && this.spriteRect.Bottom > other.spriteRect.Bottom && this.spriteRect.Right > other.spriteRect.Left && this.spriteRect.Left < other.spriteRect.Right)
-        //            {
-        //                if (velocity.Y > 0) velocity.Y = 0;
-        //            }
+                    if (this.rectangle.Top < other.rectangle.Bottom && this.rectangle.Bottom > other.rectangle.Bottom && this.rectangle.Right > other.rectangle.Left && this.rectangle.Left < other.rectangle.Right)
+                    {
+                    //                if (velocity.Y > 0) velocity.Y = 0;
+                    Console.WriteLine("I HIT A WALL2");
+                    }
         //            //Right Player Collision
-        //            if (this.spriteRect.Left + actualVelocity.X < other.spriteRect.Right && this.spriteRect.Right > other.spriteRect.Right && this.spriteRect.Bottom > other.spriteRect.Top && this.spriteRect.Top < other.spriteRect.Bottom /*&& isGrounded == false*/)
-        //            {
-        //                gamePosition.X = other.gamePosition.X + (spriteRect.Width + other.spriteRect.Width) / 2;
-        //                velocity.X = 0;
-        //            }
+                    if (this.rectangle.Left < other.rectangle.Right && this.rectangle.Right > other.rectangle.Right && this.rectangle.Bottom > other.rectangle.Top && this.rectangle.Top < other.rectangle.Bottom /*&& isGrounded == false*/)
+                    {
+                    //                gamePosition.X = other.gamePosition.X + (spriteRect.Width + other.spriteRect.Width) / 2;
+                    //                velocity.X = 0;
+                    Console.WriteLine("I HIT A WALL3");
+                    }
         //            //Left Player Collision
-        //            if (spriteRect.Right + actualVelocity.X > other.spriteRect.Left && spriteRect.Left < other.spriteRect.Left && this.spriteRect.Bottom > other.spriteRect.Top && this.spriteRect.Top < other.spriteRect.Bottom /*&&                                              isGrounded == false*/)
-        //            {
-        //                gamePosition.X = other.gamePosition.X - (spriteRect.Width + other.spriteRect.Width) / 2;
-        //                velocity.X = 0;
-        //            }
-        //        }
-        //    }
+                    if (rectangle.Right > other.rectangle.Left && rectangle.Left < other.rectangle.Left && this.rectangle.Bottom > other.rectangle.Top && this.rectangle.Top < other.rectangle.Bottom /*&&                                              isGrounded == false*/)
+                    {
+                    //                gamePosition.X = other.gamePosition.X - (spriteRect.Width + other.spriteRect.Width) / 2;
+                    //                velocity.X = 0;
+                    Console.WriteLine("I HIT A WALL4");
+                }
+                }
+            }
         }
     }

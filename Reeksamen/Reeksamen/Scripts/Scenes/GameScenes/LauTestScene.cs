@@ -46,13 +46,13 @@ namespace Reeksamen.Scripts.Scenes.GameScenes
 
             SpriteRenderer spriteRenderer = new SpriteRenderer(SpriteContainer.Instant.playerSprite);
             Player player = new Player();
-            CanShoot canShoot = new CanShoot();
+            //CanShoot canShoot = new CanShoot();
 
             playergameobject.AddComponent(spriteRenderer);
             playergameobject.AddComponent(player);
-            playergameobject.AddComponent(canShoot);
+            //playergameobject.AddComponent(canShoot);
             
-            enemygameobject.AddComponent(canShoot);
+            //enemygameobject.AddComponent(canShoot);
 
 
 
