@@ -16,7 +16,7 @@ namespace Reeksamen.Scripts.CommandPattern
 
     class InputHandler
     {
-        public Player entite { get; set; }
+        public Player entity { get; set; }
 
         private static InputHandler instance;
         //Singleton Pattern for InputHandler
@@ -54,7 +54,7 @@ namespace Reeksamen.Scripts.CommandPattern
              {
                  if (keyState.IsKeyDown(key))
                  {
-                     keybinds[key].Execute(entite);
+                     keybinds[key].Execute(entity);
                  }
              }
          }

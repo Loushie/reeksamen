@@ -46,35 +46,31 @@ namespace Reeksamen.Scripts.Scenes.GameScenes
             //Creating the player
             GameObject playerGameObject = new GameObject();
             playerGameObject.Transform.Position = new Vector2(100, 100);
-            SpriteRenderer spriteRenderer = new SpriteRenderer(SpriteContainer.Instant.playerSprite);
+            SpriteRenderer spriteRenderer = new SpriteRenderer(SpriteContainer.Instant.PlayerSprite);
             Player player = new Player();
-            Collision collision = new Collision();
             playerGameObject.AddComponent(spriteRenderer);
             playerGameObject.AddComponent(player);
-            playerGameObject.AddComponent(collision);
             player.playerHitBox = spriteRenderer.sprite.Bounds;
-            collision.rectangle = player.playerHitBox;
-
-
             playerGameObject.Tag = "Player";
+            playerGameObject.AddComponent(new Collision(spriteRenderer){ CollisionEvents = true });
             Console.WriteLine("Rasmus Test");
             Instantiate(playerGameObject);
+
             //Creating Wall
             GameObject wallGameObject = new GameObject();
             wallGameObject.Transform.Position = new Vector2(150, 150);
-            spriteRenderer = new SpriteRenderer(SpriteContainer.Instant.wallSprite);
-            collision = new Collision();
+            spriteRenderer = new SpriteRenderer(SpriteContainer.Instant.WallSprite);
             wallGameObject.AddComponent(spriteRenderer);
-            wallGameObject.AddComponent(collision);
+            wallGameObject.AddComponent(new Collision(spriteRenderer));
             wallGameObject.Tag = "Terrain";
             Instantiate(wallGameObject);
-            collision.rectangle = spriteRenderer.sprite.Bounds;
 
             //Creating Wall
             GameObject wallGameObject1 = new GameObject();
             wallGameObject1.Transform.Position = new Vector2(173, 150);
-            spriteRenderer = new SpriteRenderer(SpriteContainer.Instant.wallSprite);
+            spriteRenderer = new SpriteRenderer(SpriteContainer.Instant.WallSprite);
             wallGameObject1.AddComponent(spriteRenderer);
+            wallGameObject1.AddComponent(new Collision(spriteRenderer));
             wallGameObject1.Tag = "Terrain";
             Instantiate(wallGameObject1);
 

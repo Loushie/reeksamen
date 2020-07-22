@@ -44,7 +44,7 @@ namespace Reeksamen.Scripts.Scenes.GameScenes
             GameObject enemygameobject = new GameObject();
 
 
-            SpriteRenderer spriteRenderer = new SpriteRenderer(SpriteContainer.Instant.playerSprite);
+            SpriteRenderer spriteRenderer = new SpriteRenderer(SpriteContainer.Instant.PlayerSprite);
             Player player = new Player();
             //CanShoot canShoot = new CanShoot();
 

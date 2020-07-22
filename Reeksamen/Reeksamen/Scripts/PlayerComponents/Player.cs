@@ -31,7 +31,7 @@ namespace Reeksamen.Scripts.PlayerComponents
         public Player()
         {
             
-            InputHandler.Instance.entite = this;
+            InputHandler.Instance.entity = this;
             LoadDatabaseStats();
         }
 
@@ -102,8 +102,8 @@ namespace Reeksamen.Scripts.PlayerComponents
             }
 
             velocity *= speed;
-            Console.WriteLine(velocity);
-            Console.WriteLine(GameObject.Transform.Position);
+            //Console.WriteLine(velocity);
+            //Console.WriteLine(GameObject.Transform.Position);
 
             GameObject.Transform.Translate(velocity * GameWorld.Instance.DeltaTime);
         }
