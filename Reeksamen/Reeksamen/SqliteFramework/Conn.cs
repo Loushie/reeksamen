@@ -9,6 +9,8 @@ namespace Reeksamen.SqliteFramework
 {
     public static class Conn
     {
+
+
         public static SQLiteConnection GetCon()
         {
             string DatabaseName = "Stats";
