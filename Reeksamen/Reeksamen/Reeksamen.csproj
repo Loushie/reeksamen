@@ -61,6 +61,8 @@
     <Compile Include="Scripts\FactoryPattern\Factory.cs" />
     <Compile Include="Scripts\GameObjects\GameObject.cs" />
     <Compile Include="Scripts\GameObjects\Transform.cs" />
+    <Compile Include="Scripts\ObserverPattern\GameEvent.cs" />
+    <Compile Include="Scripts\ObserverPattern\IGameListener.cs" />
     <Compile Include="Scripts\PlayerComponents\Player.cs" />
     <Compile Include="Scripts\Scenes\GameScenes\AndreasScene.cs" />
     <Compile Include="Scripts\Scenes\GameScenes\LauTestScene.cs" />

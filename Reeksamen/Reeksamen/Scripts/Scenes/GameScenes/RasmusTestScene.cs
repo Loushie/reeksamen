@@ -52,7 +52,7 @@ namespace Reeksamen.Scripts.Scenes.GameScenes
             playerGameObject.AddComponent(player);
             player.playerHitBox = spriteRenderer.sprite.Bounds;
             playerGameObject.Tag = "Player";
-            playerGameObject.AddComponent(new Collision(spriteRenderer){ CollisionEvents = true });
+            playerGameObject.AddComponent(new Collision(spriteRenderer,player){ CollisionEvents = true });
             Console.WriteLine("Rasmus Test");
             Instantiate(playerGameObject);
 

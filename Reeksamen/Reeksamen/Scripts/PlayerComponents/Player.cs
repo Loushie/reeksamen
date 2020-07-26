@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using Reeksamen.Scripts.CommandPattern;
 using Reeksamen.Scripts.Components;
 using Reeksamen.Scripts.Containers;
+using Reeksamen.Scripts.ObserverPattern;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 //The Player Component Add Everything A Player Should Be Able To Here
 namespace Reeksamen.Scripts.PlayerComponents
 {
-    public class Player : Component
+    public class Player : Component, IGameListener
     {
         public float CurrentHealth { get; private set; }
         public float MaxHealth { get; private set; }
@@ -106,6 +107,11 @@ namespace Reeksamen.Scripts.PlayerComponents
             //Console.WriteLine(GameObject.Transform.Position);
 
             GameObject.Transform.Translate(velocity * GameWorld.Instance.DeltaTime);
+        }
+
+        public void Notify(GameEvent gameEvent, Component component)
+        {
+            Console.WriteLine("Notify Went off on player component");
         }
     }
 }

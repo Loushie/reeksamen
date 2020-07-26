@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Reeksamen.Scripts;
+using Reeksamen.Scripts.Components;
 using Reeksamen.Scripts.Container;
 using Reeksamen.Scripts.PlayerComponents;
 using System.Collections.Generic;
@@ -32,6 +33,7 @@ namespace Reeksamen
 
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
+        public List<Collision> collisions { get; set; } = new List<Collision>();
         Global global;
 
         public float DeltaTime { get; set; }
@@ -91,6 +93,16 @@ namespace Reeksamen
 
             // TODO: Add your update logic here
             DeltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            Collision[] tmpCollision = collisions.ToArray();
+
+            for (int i = 0; i < tmpCollision.Length; i++)
+            {
+                for (int j = 0; j < tmpCollision.Length; j++)
+                {
+                    tmpCollision[i].OnCollisionEnter(tmpCollision[j]);
+                }
+            }
 
             base.Update(gameTime);
             global.Update(gameTime);

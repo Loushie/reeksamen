@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Design;
 using Microsoft.Xna.Framework.Graphics;
 using Reeksamen.Scripts.Containers;
+using Reeksamen.Scripts.ObserverPattern;
 using Reeksamen.Scripts.PlayerComponents;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,10 @@ using System.Threading.Tasks;
 
 namespace Reeksamen.Scripts.Components
 {
-    class Collision : Component
+    public class Collision : Component
     {
         public bool CollisionEvents { get; set; }
+        private GameEvent onCollisionEvent = new GameEvent("Collision");
         private Vector2 size;
         private Vector2 origin;
         private Texture2D texture;
@@ -57,14 +59,23 @@ namespace Reeksamen.Scripts.Components
             //GroundCollisionDetection(GameObject);
             base.Update(gameTime);
         }
+        //If the object dosent need to do anything when colliding use this
         public Collision(SpriteRenderer spriteRenderer)
         {
             this.origin = spriteRenderer.Origin;
             this.size = new Vector2(spriteRenderer.sprite.Width, spriteRenderer.sprite.Height);
             texture = SpriteContainer.Instant.PlayerSprite;
         }
-        public void OnCollisionEnter(Collision other)
+        //If the object needs to do anything when colliding use this
+        public Collision(SpriteRenderer spriteRenderer, IGameListener gameListener)
         {
+            onCollisionEvent.Attach(gameListener);
+            this.origin = spriteRenderer.Origin;
+            this.size = new Vector2(spriteRenderer.sprite.Width, spriteRenderer.sprite.Height);
+            texture = SpriteContainer.Instant.PlayerSprite;
+        }
+        public void OnCollisionEnter(Collision other)
+        {   
             if (CollisionEvents)
             {
                 if (other != this /*&& other.GameObject.Tag == "Terrain"*/)
@@ -74,6 +85,7 @@ namespace Reeksamen.Scripts.Components
                         Console.WriteLine("We are now Colliding");
                         //TODO
                         //Collision stuff
+                        onCollisionEvent.Notify(other);
                     }
                 }
             }
@@ -116,5 +128,5 @@ namespace Reeksamen.Scripts.Components
         //        }
         //        }
         //    }
-        }
+        } 
     }
