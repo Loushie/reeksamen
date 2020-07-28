@@ -95,8 +95,6 @@ namespace Reeksamen.Scripts.PlayerComponents
         }
         public void Move(Vector2 velocity)
         {
-
-
             if (velocity != Vector2.Zero)
             {
                 velocity.Normalize();

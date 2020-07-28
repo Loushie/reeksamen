@@ -43,6 +43,8 @@ namespace Reeksamen.Scripts.Scenes.GameScenes
 
         public void RasmusTestHalloj()
         {
+
+
             //Creating the player
             GameObject playerGameObject = new GameObject();
             playerGameObject.Transform.Position = new Vector2(100, 100);

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Reeksamen.Scripts.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace Reeksamen.Scripts.Scenes
         private List<GameObject> gameObjectsToBeDestroyed = new List<GameObject>();
 
         protected List<GameObject> gameObjects = new List<GameObject>();
+        public List<Collision> collisions { get; set; } = new List<Collision>();
         public string Name { get => name; set => name = value; }
 
 
@@ -42,6 +44,7 @@ namespace Reeksamen.Scripts.Scenes
                 go.Update(gameTime);
             }
 
+            CollisionCheck();
             CallDestroyGameObjects();
             CallInstantiate();
         }
@@ -57,6 +60,19 @@ namespace Reeksamen.Scripts.Scenes
 
 
             spriteBatch.End();
+        }
+
+        private void CollisionCheck()
+        {
+            Collision[] tmpCollision = collisions.ToArray();
+
+            for (int i = 0; i < tmpCollision.Length; i++)
+            {
+                for (int j = 0; j < tmpCollision.Length; j++)
+                {
+                    tmpCollision[i].OnCollisionEnter(tmpCollision[j]);
+                }
+            }
         }
         #region Instantiate And Destroy
         /// <summary>
@@ -91,6 +107,11 @@ namespace Reeksamen.Scripts.Scenes
                     go.MyScene = this;
                     go.Awake();
                     gameObjects.Add(go);
+                    
+                    if(go.GetComponent<Collision>() != null)
+                    {
+                        collisions.Add(go.GetComponent<Collision>());
+                    }
                 }
             }
         }
@@ -108,6 +129,7 @@ namespace Reeksamen.Scripts.Scenes
                 {
                     if (gameObjects.Contains(go))
                     {
+
                         gameObjects.Remove(go);
                     }
                     go.Destroy();

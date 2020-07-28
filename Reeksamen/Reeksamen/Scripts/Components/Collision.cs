@@ -40,6 +40,10 @@ namespace Reeksamen.Scripts.Components
 
         public override void Destroy()
         {
+            if(GameObject.MyScene.collisions.Contains(this))
+            {
+                GameObject.MyScene.collisions.Remove(this);
+            }
             base.Destroy();
         }
 
