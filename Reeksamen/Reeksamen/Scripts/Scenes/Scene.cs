@@ -94,8 +94,11 @@ namespace Reeksamen.Scripts.Scenes
 
         private void CallInstantiate()
         {
+            //Here we have the list of gameobjects that are to be created and if its not empty we continue
             if (this.gameObjectsToBeCreated.Count > 0)
             {
+                //Here we add a new List and add all the gameobjects from the old list to the new one the reason for this is if something were to be added to the old list while we were using
+                //it, it could create crashes or other problems 
                 List<GameObject> awakeCall = new List<GameObject>();
 
                 awakeCall.AddRange(this.gameObjectsToBeCreated);
@@ -117,6 +120,8 @@ namespace Reeksamen.Scripts.Scenes
         }
         private void CallDestroyGameObjects()
         {
+            //Here we have the list of gameobjects that are to be created and if its not empty we continue
+    
             if (this.gameObjectsToBeDestroyed.Count > 0)
             {
                 List<GameObject> destroyCall = new List<GameObject>();
