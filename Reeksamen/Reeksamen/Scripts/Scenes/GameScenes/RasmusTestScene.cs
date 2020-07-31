@@ -43,29 +43,36 @@ namespace Reeksamen.Scripts.Scenes.GameScenes
 
         public void RasmusTestHalloj()
         {
+
+
             //Creating the player
             GameObject playerGameObject = new GameObject();
             playerGameObject.Transform.Position = new Vector2(100, 100);
-            SpriteRenderer spriteRenderer = new SpriteRenderer(SpriteContainer.Instant.playerSprite);
+            SpriteRenderer spriteRenderer = new SpriteRenderer(SpriteContainer.Instant.PlayerSprite);
             Player player = new Player();
-            player.playerHitBox = spriteRenderer.sprite.Bounds;
             playerGameObject.AddComponent(spriteRenderer);
             playerGameObject.AddComponent(player);
+            player.playerHitBox = spriteRenderer.sprite.Bounds;
             playerGameObject.Tag = "Player";
+            playerGameObject.AddComponent(new Collision(spriteRenderer,player){ CollisionEvents = true });
             Console.WriteLine("Rasmus Test");
             Instantiate(playerGameObject);
+
             //Creating Wall
             GameObject wallGameObject = new GameObject();
             wallGameObject.Transform.Position = new Vector2(150, 150);
-            spriteRenderer = new SpriteRenderer(SpriteContainer.Instant.wallSprite);
+            spriteRenderer = new SpriteRenderer(SpriteContainer.Instant.WallSprite);
             wallGameObject.AddComponent(spriteRenderer);
+            wallGameObject.AddComponent(new Collision(spriteRenderer));
             wallGameObject.Tag = "Terrain";
             Instantiate(wallGameObject);
+
             //Creating Wall
             GameObject wallGameObject1 = new GameObject();
             wallGameObject1.Transform.Position = new Vector2(173, 150);
-            spriteRenderer = new SpriteRenderer(SpriteContainer.Instant.wallSprite);
+            spriteRenderer = new SpriteRenderer(SpriteContainer.Instant.WallSprite);
             wallGameObject1.AddComponent(spriteRenderer);
+            wallGameObject1.AddComponent(new Collision(spriteRenderer));
             wallGameObject1.Tag = "Terrain";
             Instantiate(wallGameObject1);
 

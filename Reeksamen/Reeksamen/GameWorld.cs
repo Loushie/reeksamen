@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Reeksamen.Scripts;
+using Reeksamen.Scripts.Components;
 using Reeksamen.Scripts.Container;
 using Reeksamen.Scripts.PlayerComponents;
 using System.Collections.Generic;
@@ -91,6 +92,7 @@ namespace Reeksamen
 
             // TODO: Add your update logic here
             DeltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
 
             base.Update(gameTime);
             global.Update(gameTime);

@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using Reeksamen.Scripts.CommandPattern;
 using Reeksamen.Scripts.Components;
 using Reeksamen.Scripts.Containers;
+using Reeksamen.Scripts.ObserverPattern;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 //The Player Component Add Everything A Player Should Be Able To Here
 namespace Reeksamen.Scripts.PlayerComponents
 {
-    public class Player : Component
+    public class Player : Component, IGameListener
     {
         public float CurrentHealth { get; private set; }
         public float MaxHealth { get; private set; }
@@ -20,7 +21,7 @@ namespace Reeksamen.Scripts.PlayerComponents
         public float speed;
 
         private Transform transform;
-        private CanShoot canshoot;
+        //private CanShoot canshoot;
         public Rectangle playerHitBox;
 
         public Player(Rectangle playerHitBox)
@@ -31,23 +32,23 @@ namespace Reeksamen.Scripts.PlayerComponents
         public Player()
         {
             
-            InputHandler.Instance.entite = this;
+            InputHandler.Instance.entity = this;
             LoadDatabaseStats();
         }
 
         public override void Awake()
         {
-            canshoot = GameObject.GetComponent<CanShoot>();
+            //canshoot = GameObject.GetComponent<CanShoot>();
             base.Awake();
             
         }
 
         public void Playershoots()
         {
-            if (canshoot != null)
-            {
-                canshoot.Shoot();
-            }
+            //if (canshoot != null)
+            //{
+            //    canshoot.Shoot();
+            //}
             
         }
 
@@ -94,18 +95,25 @@ namespace Reeksamen.Scripts.PlayerComponents
         }
         public void Move(Vector2 velocity)
         {
-
-
             if (velocity != Vector2.Zero)
             {
                 velocity.Normalize();
             }
 
             velocity *= speed;
-            Console.WriteLine(velocity);
-            Console.WriteLine(GameObject.Transform.Position);
+            //Console.WriteLine(velocity);
+            //Console.WriteLine(GameObject.Transform.Position);
 
             GameObject.Transform.Translate(velocity * GameWorld.Instance.DeltaTime);
+        }
+
+        public void Notify(GameEvent gameEvent, Component component)
+        {
+            Console.WriteLine("Notify Went off on player component");
+
+
+
+
         }
     }
 }

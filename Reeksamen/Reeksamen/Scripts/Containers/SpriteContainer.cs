@@ -25,10 +25,13 @@ namespace Reeksamen.Scripts.Containers
                 return instant;
             }
         }
-        #endregion
 
-        public Texture2D playerSprite;
-        public Texture2D wallSprite;
+        #endregion
+        public Texture2D PlayerSprite { get => playerSprite; set => playerSprite = value; }
+        public Texture2D WallSprite { get => wallSprite; set => wallSprite = value; }
+
+        private Texture2D playerSprite;
+        private Texture2D wallSprite;
 
         public void LoadContent(ContentManager content)
         {

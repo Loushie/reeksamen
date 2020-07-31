@@ -12,6 +12,8 @@ namespace Reeksamen.Scripts
 {
     public class GameObject
     {
+        public Rectangle rectangle;
+
         private Dictionary<string, Component> components = new Dictionary<string, Component>();
         public Transform Transform { get; private set; }
         public Dictionary<string, Component> Components { get => components; set => components = value; }

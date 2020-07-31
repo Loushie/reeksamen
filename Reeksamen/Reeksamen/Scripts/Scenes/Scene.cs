@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Reeksamen.Scripts.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace Reeksamen.Scripts.Scenes
         private List<GameObject> gameObjectsToBeDestroyed = new List<GameObject>();
 
         protected List<GameObject> gameObjects = new List<GameObject>();
+        public List<Collision> collisions { get; set; } = new List<Collision>();
         public string Name { get => name; set => name = value; }
 
 
@@ -42,6 +44,7 @@ namespace Reeksamen.Scripts.Scenes
                 go.Update(gameTime);
             }
 
+            CollisionCheck();
             CallDestroyGameObjects();
             CallInstantiate();
         }
@@ -57,6 +60,19 @@ namespace Reeksamen.Scripts.Scenes
 
 
             spriteBatch.End();
+        }
+
+        private void CollisionCheck()
+        {
+            Collision[] tmpCollision = collisions.ToArray();
+
+            for (int i = 0; i < tmpCollision.Length; i++)
+            {
+                for (int j = 0; j < tmpCollision.Length; j++)
+                {
+                    tmpCollision[i].OnCollisionEnter(tmpCollision[j]);
+                }
+            }
         }
         #region Instantiate And Destroy
         /// <summary>
@@ -78,8 +94,11 @@ namespace Reeksamen.Scripts.Scenes
 
         private void CallInstantiate()
         {
+            //Here we have the list of gameobjects that are to be created and if its not empty we continue
             if (this.gameObjectsToBeCreated.Count > 0)
             {
+                //Here we add a new List and add all the gameobjects from the old list to the new one the reason for this is if something were to be added to the old list while we were using
+                //it, it could create crashes or other problems 
                 List<GameObject> awakeCall = new List<GameObject>();
 
                 awakeCall.AddRange(this.gameObjectsToBeCreated);
@@ -91,11 +110,18 @@ namespace Reeksamen.Scripts.Scenes
                     go.MyScene = this;
                     go.Awake();
                     gameObjects.Add(go);
+                    
+                    if(go.GetComponent<Collision>() != null)
+                    {
+                        collisions.Add(go.GetComponent<Collision>());
+                    }
                 }
             }
         }
         private void CallDestroyGameObjects()
         {
+            //Here we have the list of gameobjects that are to be created and if its not empty we continue
+    
             if (this.gameObjectsToBeDestroyed.Count > 0)
             {
                 List<GameObject> destroyCall = new List<GameObject>();
@@ -108,6 +134,7 @@ namespace Reeksamen.Scripts.Scenes
                 {
                     if (gameObjects.Contains(go))
                     {
+
                         gameObjects.Remove(go);
                     }
                     go.Destroy();

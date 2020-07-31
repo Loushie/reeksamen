@@ -16,7 +16,7 @@ namespace Reeksamen.Scripts.CommandPattern
 
     class InputHandler
     {
-        public Player entite { get; set; }
+        public Player entity { get; set; }
 
         private static InputHandler instance;
         //Singleton Pattern for InputHandler
@@ -43,7 +43,7 @@ namespace Reeksamen.Scripts.CommandPattern
              keybinds.Add(Keys.A, new MoveCommand(new Vector2(-1, 0)));
              keybinds.Add(Keys.W, new MoveCommand(new Vector2(0, -1)));
              keybinds.Add(Keys.S, new MoveCommand(new Vector2(0, 1)));
-             keybinds.Add(Keys.K, new ShootCommand());
+             //keybinds.Add(Keys.K, new ShootCommand());
          }
         //Check if player Presses any of the keybinds
          public void Execute()
@@ -54,7 +54,7 @@ namespace Reeksamen.Scripts.CommandPattern
              {
                  if (keyState.IsKeyDown(key))
                  {
-                     keybinds[key].Execute(entite);
+                     keybinds[key].Execute(entity);
                  }
              }
          }
