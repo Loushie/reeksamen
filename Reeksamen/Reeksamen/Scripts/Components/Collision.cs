@@ -7,6 +7,7 @@ using Reeksamen.Scripts.PlayerComponents;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,6 +15,9 @@ namespace Reeksamen.Scripts.Components
 {
     public class Collision : Component
     {
+        private int offset = 2; //used in the collision if charecter starts Teleporting around the objects adjusting this might fix it. Lower is better.
+
+
         public bool CollisionEvents { get; set; }
         private GameEvent onCollisionEvent = new GameEvent("Collision");
         private Vector2 size;
@@ -82,18 +86,39 @@ namespace Reeksamen.Scripts.Components
         {   
             if (CollisionEvents)
             {
-                if (other != this /*&& other.GameObject.Tag == "Terrain"*/)
+                if (other != this && other.GameObject.Tag == "Terrain")
                 {
                     if (this.CollisionBox.Intersects(other.CollisionBox))
                     {
-                        Console.WriteLine("We are now Colliding");
+                        //Console.WriteLine("We are now Colliding");
                         //TODO
                         //Collision stuff
                         onCollisionEvent.Notify(other);
+
+                        //Bottom of player collision
+                        if (this.CollisionBox.Bottom > other.CollisionBox.Top && this.CollisionBox.Top < other.CollisionBox.Top && this.CollisionBox.Right - offset > other.CollisionBox.Left && this.CollisionBox.Left + offset < other.CollisionBox.Right) // the + & - 10 is so that side collision can take place before top or bottom
+                        {
+                            this.GameObject.Transform.Position.Y = other.GameObject.Transform.Position.Y - (this.CollisionBox.Height + other.CollisionBox.Height) / 1.9f ; // 1.9 makes it able to get off a block it has collided with any higher and the charecter gets stuck
+                        }
+                        //Top of player collision
+                        if (this.CollisionBox.Top < other.CollisionBox.Bottom && this.CollisionBox.Bottom > other.CollisionBox.Bottom && this.CollisionBox.Right - offset > other.CollisionBox.Left && this.CollisionBox.Left + offset < other.CollisionBox.Right) // the + & - 10 is so that side collision can take place before top or bottom
+                        {
+                            this.GameObject.Transform.Position.Y = other.GameObject.Transform.Position.Y + (this.CollisionBox.Height + other.CollisionBox.Height) / 2.2f; // 2.2 makes it not bounce all over the place
+                        }
+                        //Right side of player collision
+                        if (this.CollisionBox.Left < other.CollisionBox.Right && this.CollisionBox.Right > other.CollisionBox.Right && this.CollisionBox.Bottom - offset > other.CollisionBox.Top && this.CollisionBox.Top + offset < other.CollisionBox.Bottom)
+                        {
+                            this.GameObject.Transform.Position.X = other.GameObject.Transform.Position.X + (this.CollisionBox.Width + other.CollisionBox.Width) / 1.7f; // 1.7 makes it not bounce all over the place
+                        }
+                        if (this.CollisionBox.Right > other.CollisionBox.Left && this.CollisionBox.Left < other.CollisionBox.Left && this.CollisionBox.Bottom - offset > other.CollisionBox.Top && this.CollisionBox.Top + offset < other.CollisionBox.Bottom)
+                        {
+                            //gamePosition.X = other.gamePosition.X - (spriteRect.Width + other.spriteRect.Width) / 2;
+                            this.GameObject.Transform.Position.X = other.GameObject.Transform.Position.X - (this.CollisionBox.Width + other.CollisionBox.Width) / 2.3f;
+                                
+                        }
                     }
                 }
             }
-        }
         //public void GroundCollisionDetection(GameObject other)
         //{
             
@@ -131,6 +156,6 @@ namespace Reeksamen.Scripts.Components
         //            Console.WriteLine("I HIT A WALL4");
         //        }
         //        }
-        //    }
+            }
         } 
     }

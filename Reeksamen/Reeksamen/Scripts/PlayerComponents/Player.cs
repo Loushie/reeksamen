@@ -110,6 +110,10 @@ namespace Reeksamen.Scripts.PlayerComponents
         public void Notify(GameEvent gameEvent, Component component)
         {
             Console.WriteLine("Notify Went off on player component");
+
+
+
+
         }
     }
 }
