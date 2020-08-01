@@ -47,6 +47,8 @@
     <Compile Include="GameWorld.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scripts\AStar\AStar.cs" />
+    <Compile Include="Scripts\AStar\Tile.cs" />
     <Compile Include="Scripts\CommandPattern\ICommand.cs" />
     <Compile Include="Scripts\CommandPattern\InputHandler.cs" />
     <Compile Include="Scripts\CommandPattern\MoveCommand.cs" />
@@ -57,11 +59,14 @@
     <Compile Include="Scripts\Containers\SpriteContainer.cs" />
     <Compile Include="Scripts\Enemies\EnemyZombie.cs" />
     <Compile Include="Scripts\Enums\SceneEnumNames.cs" />
+    <Compile Include="Scripts\Enums\TileTypeEnums.cs" />
     <Compile Include="Scripts\FactoryPattern\EnemyFactory.cs" />
     <Compile Include="Scripts\FactoryPattern\EnviormentFactory.cs" />
     <Compile Include="Scripts\FactoryPattern\Factory.cs" />
+    <Compile Include="Scripts\FactoryPattern\PlayerFactory.cs" />
     <Compile Include="Scripts\GameObjects\GameObject.cs" />
     <Compile Include="Scripts\GameObjects\Transform.cs" />
+    <Compile Include="Scripts\MakeWorld\MakeWorld.cs" />
     <Compile Include="Scripts\ObserverPattern\GameEvent.cs" />
     <Compile Include="Scripts\ObserverPattern\IGameListener.cs" />
     <Compile Include="Scripts\PlayerComponents\Player.cs" />

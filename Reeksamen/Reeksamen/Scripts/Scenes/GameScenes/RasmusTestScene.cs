@@ -22,7 +22,9 @@ namespace Reeksamen.Scripts.Scenes.GameScenes
 
         public override void Initialize()
         {
-            RasmusTestHalloj();
+            //RasmusTestHalloj();
+            MakeWorld world = new MakeWorld();
+            world.MakeNewWorld(this);
             base.Initialize();
         }
 

@@ -29,6 +29,7 @@ namespace Reeksamen.Scripts.FactoryPattern
         {
             GameObject go = new GameObject();
             SpriteRenderer spriteRenderer = new SpriteRenderer();
+            spriteRenderer.LayerDepth = 0.01f;
             go.AddComponent(spriteRenderer);
 
             switch (type)
@@ -36,13 +37,14 @@ namespace Reeksamen.Scripts.FactoryPattern
                 case "Wall":
                     spriteRenderer.SetNewImage(SpriteContainer.Instant.WallSprite);
                     go.AddComponent(new Collision(spriteRenderer));
+                    go.Tag = "Terrain";
                     break;
 
                 case "Floor":
-
+                    spriteRenderer.SetNewImage(SpriteContainer.Instant.FloorSprite);
                     break;
             }
-
+            return go;
         }
     }
 }

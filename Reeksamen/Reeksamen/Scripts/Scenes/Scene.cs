@@ -17,7 +17,7 @@ namespace Reeksamen.Scripts.Scenes
         private List<GameObject> gameObjectsToBeCreated = new List<GameObject>();
         private List<GameObject> gameObjectsToBeDestroyed = new List<GameObject>();
 
-        protected List<GameObject> gameObjects = new List<GameObject>();
+        public List<GameObject> gameObjects = new List<GameObject>();
         public List<Collision> collisions { get; set; } = new List<Collision>();
         public string Name { get => name; set => name = value; }
 
@@ -41,6 +41,11 @@ namespace Reeksamen.Scripts.Scenes
         {
             foreach (GameObject go in gameObjects)
             {
+                if (go.FirstUpdate == true)
+                {
+                    go.Start();
+                    go.FirstUpdate = false;
+                }
                 go.Update(gameTime);
             }
 
@@ -50,7 +55,7 @@ namespace Reeksamen.Scripts.Scenes
         }
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.FrontToBack,BlendState.AlphaBlend);
             
 
             foreach (GameObject go in gameObjects)
