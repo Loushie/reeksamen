@@ -25,6 +25,16 @@ namespace Reeksamen.Scripts.Components
             rectangle = new Rectangle(0, 0, sprite.Width, sprite.Height);
         }
 
+        public SpriteRenderer()
+        {
+
+        }
+
+        public void SetNewImage(Texture2D sprite)
+        {
+            this.sprite = sprite;
+            rectangle = new Rectangle(0, 0, sprite.Width, sprite.Height);
+        }
         public override string ToString()
         {
             return "SpriteRenderer";

@@ -58,6 +58,7 @@
     <Compile Include="Scripts\Enemies\EnemyZombie.cs" />
     <Compile Include="Scripts\Enums\SceneEnumNames.cs" />
     <Compile Include="Scripts\FactoryPattern\EnemyFactory.cs" />
+    <Compile Include="Scripts\FactoryPattern\EnviormentFactory.cs" />
     <Compile Include="Scripts\FactoryPattern\Factory.cs" />
     <Compile Include="Scripts\GameObjects\GameObject.cs" />
     <Compile Include="Scripts\GameObjects\Transform.cs" />

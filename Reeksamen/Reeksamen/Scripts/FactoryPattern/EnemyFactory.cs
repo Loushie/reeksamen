@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 //This Is What We Are Gonna Use To Spawn Our Enemies
 namespace Reeksamen.Scripts.FactoryPattern
 {
-    class EnemyFactory
+    class EnemyFactory : Factory
     {
+        public override GameObject Create(string type)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

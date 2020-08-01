@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 //This Is What The Other Factory Patterns Are Gonna Inherit From
 namespace Reeksamen.Scripts.FactoryPattern
 {
-    class Factory
+    public abstract class Factory
     {
+        public abstract GameObject Create(string type);
     }
 }
