@@ -29,7 +29,13 @@ namespace Reeksamen.Scripts.Containers
         #endregion
         public Texture2D PlayerSprite { get => playerSprite; set => playerSprite = value; }
         public Texture2D WallSprite { get => wallSprite; set => wallSprite = value; }
+        public Texture2D FloorSprite { get => floorSprite; set => floorSprite = value; }
+        public Texture2D BulletSprite { get => bulletSprite; set => bulletSprite = value; }
+        public Texture2D ZombieSprite { get => zombieSprite; set => zombieSprite = value; }
 
+        private Texture2D zombieSprite;
+        private Texture2D bulletSprite;
+        private Texture2D floorSprite;
         private Texture2D playerSprite;
         private Texture2D wallSprite;
 
@@ -37,6 +43,10 @@ namespace Reeksamen.Scripts.Containers
         {
             playerSprite = content.Load<Texture2D>("GameSprites/Player");
             wallSprite = content.Load<Texture2D>("GameSprites/Wall");
+            floorSprite = content.Load<Texture2D>("GameSprites/Floor");
+            bulletSprite = content.Load<Texture2D>("GameSprites/bullet");
+            zombieSprite = content.Load<Texture2D>("GameSprites/zombie");
+
         }
 
 
