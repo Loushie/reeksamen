@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Reeksamen.Scripts.SQLiteFrameWork
 {
-    class AutoFactory<T> where T : new ()
+    public class AutoFactory<T> where T : new ()
     {
         private sting table;
         private Mapper<T> mapper = new Mapper<T>();

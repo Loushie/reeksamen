@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Reeksamen.Scripts.Enums;
+using Reeksamen.Scripts.SQLiteFrameWork;
+using Reeksamen.Scripts.SQLiteFrameWork.Factories;
+using Reeksamen.Scripts.SQLiteFrameWork.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Globalization;
@@ -13,11 +17,12 @@ namespace Reeksamen.Scripts.SQLlite
     {
         public void RunSQLite()
         {
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US"); //used incase we want floats to work properly in the database since . gets converted to , otherwise
-            DataBaseSetup();
+            //Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US"); //used incase we want floats to work properly in the database since . gets converted to , otherwise
+            //DataBaseSetup();
+            PlayerStatsDatabase();
         }
 
-        private void DataBaseSetup()
+        /*private void DataBaseSetup()
         {
             string name = "DatabaseName";
             SQLiteConnection databaseCon = new SQLiteConnection($"Data Source={name}.db;Version=3;New=true"); //sets up the database if it dosent already exsist
@@ -49,6 +54,27 @@ namespace Reeksamen.Scripts.SQLlite
 
 
             databaseCon.Close();
+        }*/
+
+        private void PlayerStatsDatabase()
+        {
+            AutoTable<PlayerStats_Table> autoTable = new AutoTable<PlayerStats_Table>();
+            autoTable.MakeTable();
+
+            PlayerStats_Factory pf = new PlayerStats_Factory();
+
+            PlayerStats_Table pt = new PlayerStats_Table("Player", true, 123, 43.12f, DateTime.Now, DatabaseEnums.DatabaseEnum01);
+            pf.Insert(pt);
+
+            pt = new PlayerStats_Table("Test", false, 23, 69.420f, DateTime.UtcNow, DatabaseEnums.DatabaseEnum04);
+            pf.Insert(pt);
+
+            List<PlayerStats_Table> listpt = pt.GetAll();
+
+            foreach (PlayerStats_Table item in listpt)
+            {
+
+            }
         }
     }
 }
