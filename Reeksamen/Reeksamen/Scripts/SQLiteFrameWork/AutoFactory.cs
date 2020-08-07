@@ -9,7 +9,7 @@ namespace Reeksamen.Scripts.SQLiteFrameWork
 {
     public class AutoFactory<T> where T : new ()
     {
-        private sting table;
+        private string table;
         private Mapper<T> mapper = new Mapper<T>();
 
         public AutoFactory()

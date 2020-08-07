@@ -66,14 +66,20 @@ namespace Reeksamen.Scripts.SQLlite
             PlayerStats_Table pt = new PlayerStats_Table("Player", true, 123, 43.12f, DateTime.Now, DatabaseEnums.DatabaseEnum01);
             pf.Insert(pt);
 
-            pt = new PlayerStats_Table("Test", false, 23, 69.420f, DateTime.UtcNow, DatabaseEnums.DatabaseEnum04);
+            pt = new PlayerStats_Table("Test", false, 23, 69.420f, DateTime.Now, DatabaseEnums.DatabaseEnum04);
             pf.Insert(pt);
 
-            List<PlayerStats_Table> listpt = pt.GetAll();
+            List<PlayerStats_Table> Listpt = pf.GetAll();
 
-            foreach (PlayerStats_Table item in listpt)
+            foreach (PlayerStats_Table item in Listpt)
             {
-
+                Console.WriteLine(item.ID);
+                Console.WriteLine(item.Name);
+                Console.WriteLine(item.YesNo);
+                Console.WriteLine(item.NumberInt);
+                Console.WriteLine(item.NumberFloat);
+                Console.WriteLine(item.dateTime);
+                Console.WriteLine(item.enums);
             }
         }
     }
