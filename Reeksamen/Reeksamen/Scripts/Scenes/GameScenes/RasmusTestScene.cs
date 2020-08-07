@@ -4,6 +4,7 @@ using Reeksamen.Scripts.Components;
 using Reeksamen.Scripts.Containers;
 using Reeksamen.Scripts.Enums;
 using Reeksamen.Scripts.PlayerComponents;
+using Reeksamen.Scripts.SQLlite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,12 @@ namespace Reeksamen.Scripts.Scenes.GameScenes
             //RasmusTestHalloj();
             MakeWorld world = new MakeWorld();
             world.MakeNewWorld(this);
+            //MakeWorld makes the world and places the player and enemies
             base.Initialize();
+
+            //SQL
+            SQLite_Database sQLite_Database = new SQLite_Database();
+            sQLite_Database.RunSQLite();
         }
 
         public override void OnSwitchAwayFromThisScene()
@@ -42,10 +48,9 @@ namespace Reeksamen.Scripts.Scenes.GameScenes
         {
             base.Update(gameTime);
         }
-
-        public void RasmusTestHalloj()
+        //The Old system to create the world and spawn in objects before Factory Pattern
+/*        public void RasmusTestHalloj()
         {
-
 
             //Creating the player
             GameObject playerGameObject = new GameObject();
@@ -78,7 +83,6 @@ namespace Reeksamen.Scripts.Scenes.GameScenes
             wallGameObject1.Tag = "Terrain";
             Instantiate(wallGameObject1);
 
-
         }
         //Shows how to use GetComponent
         public void ColliderEksempel(GameObject collidedGameObject)
@@ -89,6 +93,6 @@ namespace Reeksamen.Scripts.Scenes.GameScenes
                 player.TakeDmg(5);
                 
             }
-        }
+        }*/
     }
 }

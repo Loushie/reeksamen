@@ -16,6 +16,7 @@ namespace Reeksamen.Scripts
     {
         private Scene myScene;
 
+        //The size of the sprites filling 1 spot in the grid
         private int sizeOfGrid = 25;
 
 
@@ -24,7 +25,13 @@ namespace Reeksamen.Scripts
 
         Tile[,] tileGrid;
 
-
+        /// <summary>
+        /// The Map
+        /// 0 = floor
+        /// 1 = wall
+        /// 2 = enemies
+        /// 3 = player
+        /// </summary>
         int[,] worldGrid = new int[,]
         {
             { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
@@ -75,12 +82,12 @@ namespace Reeksamen.Scripts
                     Vector2 pos = new Vector2(x, y);
                     int numberfromGrid = worldGrid[x, y];
 
-                    MakeTile(numberfromGrid, pos);
+                    FillTiles(numberfromGrid, pos);
                 }
             }
             AStar.Instance.TileGrid = tileGrid;
         }
-        private void MakeTile(int numberFromGrid, Vector2 _pos)
+        private void FillTiles(int numberFromGrid, Vector2 _pos)
         {
             Vector2 pos = _pos * sizeOfGrid;
             Tile tileTMP = new Tile(sizeOfGrid);
@@ -90,17 +97,17 @@ namespace Reeksamen.Scripts
             {
                 //Floor
                 case 0:
-                    MakeFloorAndWall(false, tileTMP, _pos);
+                    MakeWallsAndFloor(false, tileTMP, _pos);
                     break;
                 
                 //Wall
                 case 1:
-                    MakeFloorAndWall(true, tileTMP, _pos);
+                    MakeWallsAndFloor(true, tileTMP, _pos);
                     break;
 
                 //Enemy
                 case 2:
-                    MakeFloorAndWall(false, tileTMP, _pos);
+                    MakeWallsAndFloor(false, tileTMP, _pos);
                     go = EnemyFactory.Instance.Create("Zombie");
                     go.Transform.Position = pos;
                     myScene.Instantiate(go);
@@ -108,7 +115,7 @@ namespace Reeksamen.Scripts
 
                 //Player
                 case 3:
-                    MakeFloorAndWall(false, tileTMP, _pos);
+                    MakeWallsAndFloor(false, tileTMP, _pos);
                     go = PlayerFactory.Instance.Create("Player");
                     go.Transform.Position = pos;
                     myScene.Instantiate(go);
@@ -118,12 +125,12 @@ namespace Reeksamen.Scripts
                     break;
             }
         }
-        private void MakeFloorAndWall(bool isWall, Tile tile, Vector2 _pos)
+        private void MakeWallsAndFloor(bool isWall, Tile tile, Vector2 _pos)
         {
 
             GameObject go;
             Vector2 pos = _pos * sizeOfGrid;
-
+            //if it is a wall make a wall if its not a wall make floor this makes it so there is floor below the player and enemies too
             if (isWall == true)
             {
                 tile.TileType = Enums.TileTypeEnums.wall;
@@ -131,10 +138,8 @@ namespace Reeksamen.Scripts
             }
             else
             {
-
                 tile.TileType = Enums.TileTypeEnums.floor;
                 go = EnviormentFactory.Instance.Create("Floor");
-
             }
 
             go.Transform.Position = pos;

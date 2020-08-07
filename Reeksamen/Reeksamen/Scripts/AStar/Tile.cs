@@ -20,13 +20,13 @@ namespace Reeksamen.Scripts
         private TileTypeEnums tileType;
 
         int tilesize;
+        public GameObject GameObject { get => gameObject; set => gameObject = value; }
         public int G { get => g; set => g = value; }
         public int H { get => h; set => h = value; }
         public int F { get => f; set => f = value; }
-        public GameObject GameObject { get => gameObject; set => gameObject = value; }
-        public int Tilesize { get => tilesize; set => tilesize = value; }
         public Tile LastTile { get => lastTile; set => lastTile = value; }
         public TileTypeEnums TileType { get => tileType; set => tileType = value; }
+        public int Tilesize { get => tilesize; set => tilesize = value; }
 
         public Tile (int tilesize)
         {

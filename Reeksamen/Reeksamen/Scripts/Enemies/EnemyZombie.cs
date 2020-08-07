@@ -16,7 +16,7 @@ namespace Reeksamen.Scripts.Enemies
         private GameObject target;
         private Vector2 moveToPosition;
         private float speed = 50;
-        private float safeGuardMovement = 2f;
+        private float safeGuardMovement = 2f; //change this if the enemy gets stuck between 2 tiles
         public override void Awake()
         {
             base.Awake();
@@ -56,17 +56,18 @@ namespace Reeksamen.Scripts.Enemies
         {
             if (Vector2.Distance(target.Transform.Position, GameObject.Transform.Position) > 10)
             {
-
-
-                if (moveToPosition.X + safeGuardMovement > GameObject.Transform.Position.X && moveToPosition.X - safeGuardMovement < GameObject.Transform.Position.X)
+                if (moveToPosition.X + safeGuardMovement > GameObject.Transform.Position.X && moveToPosition.X - safeGuardMovement < GameObject.Transform.Position.X && (moveToPosition.Y + safeGuardMovement > GameObject.Transform.Position.Y && moveToPosition.Y - safeGuardMovement < GameObject.Transform.Position.Y))
                 {
-                    if (moveToPosition.Y + safeGuardMovement > GameObject.Transform.Position.Y && moveToPosition.Y - safeGuardMovement < GameObject.Transform.Position.Y)
+                    GetNextPath();
+                    /*if (moveToPosition.Y + safeGuardMovement > GameObject.Transform.Position.Y && moveToPosition.Y - safeGuardMovement < GameObject.Transform.Position.Y)
                     {
                         GetNextPath();
-                    }
+                    }*/
                 }
+
                 Vector2 direction = new Vector2(0, 0);
 
+                //The moving of the Enemy
                 if (moveToPosition.X > GameObject.Transform.Position.X)
                 {
                     direction += new Vector2(1, 0);

@@ -49,6 +49,7 @@ namespace Reeksamen.Scripts
             open.Clear();
             closed.Clear();
 
+
             goal = FindTargetPositionOnGrid(targetPos);
             start = FindMyPositionOnTileGrid(myPos);
 
@@ -56,6 +57,7 @@ namespace Reeksamen.Scripts
             runAStar = false;
             return pathBack;
         }
+        //Finds the players position on the grid
         private Tile FindTargetPositionOnGrid(Vector2 targetPos)
         {
             float distanceToPlayer = float.MaxValue;
@@ -65,11 +67,12 @@ namespace Reeksamen.Scripts
             {
                 for (int y = 0; y < tileGrid.GetLength(1); y++)
                 {
-                    if (tileGrid[x,y].TileType == Enums.TileTypeEnums.floor) //if a floor
+                    if (tileGrid[x,y].TileType == Enums.TileTypeEnums.floor) //If its enum tells us its a floor
                     {
-                        Vector2 GridPosTMP = tileGrid[x, y].GameObject.Transform.Position;
-                        float distanceTMP = Vector2.Distance(GridPosTMP, targetPos);
-                        if (distanceTMP < distanceToPlayer)
+                        Vector2 GridPosTMP = tileGrid[x, y].GameObject.Transform.Position; 
+                        float distanceTMP = Vector2.Distance(GridPosTMP, targetPos); 
+
+                        if (distanceTMP < distanceToPlayer) 
                         {
                             distanceToPlayer = distanceTMP;
                             playerGridPos = tileGrid[x,y];
@@ -77,8 +80,9 @@ namespace Reeksamen.Scripts
                     }
                 }
             }
-            return playerGridPos;
+            return playerGridPos; //returns the players x,y position in the grid as a Vector2
         }
+        //Finds the enemies position on the grid
         private Tile FindMyPositionOnTileGrid(Vector2 myPos)
         {
             float distanceToPlayer = float.MaxValue;
@@ -151,7 +155,7 @@ namespace Reeksamen.Scripts
                 }
             }
             tile.H = distance;
-            tile.G = gCost + (currentTile != null ? currentTile.G : 0); //? works as if.  : works as else
+            tile.G = gCost + (currentTile != null ? currentTile.G : 0); //? works as an [if].  : works as an [else]
             tile.F = tile.G + tile.H;
             tile.LastTile = currentTile;
 
