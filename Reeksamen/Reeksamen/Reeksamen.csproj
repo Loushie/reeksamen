@@ -60,6 +60,7 @@
     <Compile Include="Scripts\Containers\SceneContainers.cs" />
     <Compile Include="Scripts\Containers\SpriteContainer.cs" />
     <Compile Include="Scripts\Enemies\EnemyZombie.cs" />
+    <Compile Include="Scripts\Enums\DatabaseEnums.cs" />
     <Compile Include="Scripts\Enums\SceneEnumNames.cs" />
     <Compile Include="Scripts\Enums\TileTypeEnums.cs" />
     <Compile Include="Scripts\FactoryPattern\EnemyFactory.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="Scripts\SQLiteFrameWork\AutoTable.cs" />
     <Compile Include="Scripts\SQLiteFrameWork\Connector.cs" />
     <Compile Include="Scripts\SQLiteFrameWork\Mapper.cs" />
+    <Compile Include="Scripts\SQLiteFrameWork\Models\PlayerStats_Table.cs" />
     <Compile Include="Scripts\SQLite\SQLite_Database.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -106,7 +108,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\SQLiteFrameWork\Factories\" />
-    <Folder Include="Scripts\SQLiteFrameWork\Models\" />
     <Folder Include="Scripts\StatePattern\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

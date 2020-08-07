@@ -38,7 +38,7 @@ namespace Reeksamen.Scripts.SQLiteFrameWork
             columns = columns.Substring(0, columns.Length - 2);
             parms = parms.Substring(0, parms.Length - 2);
 
-            using(var cmd = new SQLiteCommand($"INSERT INTO {table} {columns} VALUES {parms}; SELECT LAST_INSERT_ROWID() as currentID;", Connector.CreateConnection()))
+            using(var cmd = new SQLiteCommand($"INSERT INTO {table} ({columns}) VALUES ({parms}); SELECT LAST_INSERT_ROWID() as currentID;", Connector.CreateConnection()))
             {
                 foreach (var prop in mapping)
                 {
@@ -80,6 +80,16 @@ namespace Reeksamen.Scripts.SQLiteFrameWork
                 r.Close();
                 cmd.Connection.Close();
                 return type;
+            }
+        }
+
+        public List<T> GetAll()
+        {
+            using (var cmd = new SQLiteCommand($"SELECT * FROM {table}", Connector.CreateConnection()))
+            {
+                List<T> list = mapper.MapList(cmd.ExecuteReader());
+                cmd.Connection.Close();
+                return list;
             }
         }
     }
