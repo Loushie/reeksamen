@@ -8,6 +8,7 @@ using Reeksamen.Scripts.ObserverPattern;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 //The Player Component Add Everything A Player Should Be Able To Here
@@ -15,9 +16,18 @@ namespace Reeksamen.Scripts.PlayerComponents
 {
     public class Player : Component, IGameListener
     {
+        private int number1 = 10;
+
+        public int Number1 { get { return number1; } set { number1 = value; } }
+
+        
+        private int number2 { get; set; }
+
+
+
         public float CurrentHealth { get; private set; }
         public float MaxHealth { get; private set; }
-
+        
         public float speed;
 
         private Transform transform;

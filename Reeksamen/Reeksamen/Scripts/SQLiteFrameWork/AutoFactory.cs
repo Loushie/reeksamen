@@ -53,7 +53,7 @@ namespace Reeksamen.Scripts.SQLiteFrameWork
 
                 if (r.Read())
                 {
-                    curID = int.Parse(r["curID"].ToString());
+                    curID = int.Parse(r["currentID"].ToString());
                 }
 
                 r.Close();
