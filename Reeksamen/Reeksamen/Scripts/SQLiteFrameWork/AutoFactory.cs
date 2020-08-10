@@ -92,5 +92,71 @@ namespace Reeksamen.Scripts.SQLiteFrameWork
                 return list;
             }
         }
+
+        public List<T> GetBy(string column, object value)
+        {
+            using (var cmd = new SQLiteCommand($"SELECT * FROM {table} WHERE {column}=@value", Connector.CreateConnection()))
+            {
+                cmd.Parameters.AddWithValue("@value", value);
+
+                List<T> list = mapper.MapList(cmd.ExecuteReader());
+                cmd.Connection.Close();
+                return list;
+            }
+        }
+
+        public void Delete(int ID)
+        {
+            using (var cmd = new SQLiteCommand($"DELETE FROM {table} WHERE ID=@ID",Connector.CreateConnection()))
+            {
+                cmd.Parameters.AddWithValue("@ID", ID);
+                cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+            }
+        }
+
+        public void DeleteBy(string column, object value)
+        {
+            using (var cmd = new SQLiteCommand($"DELETE FROM {table} WHERE {column}=@value", Connector.CreateConnection()))
+            {
+                cmd.Parameters.AddWithValue("@value", value);
+                cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+            }
+        }
+
+        public void Update(T pro)
+        {
+            string fAndP = "";
+            var mappings = mapper.CreateMapper();
+
+            foreach (var map in mappings)
+            {
+                if (map.Key.ToLower() != "id")
+                {
+                    if(pro.GetType().GetProperty(map.Key).GetValue(pro, null) != null)
+                    {
+                        fAndP += map.Value + "=@" + map.Key + ", ";
+                    }
+                }
+
+                fAndP = fAndP.Substring(0, fAndP.Length - 2);
+
+                using (var cmd = new SQLiteCommand($"UPDATE {table} SET {fAndP} WHERE ID=@id", Connector.CreateConnection()))
+                {
+                    foreach (var prop in mappings)
+                    {
+                        if (pro.GetType().GetProperty(prop.Key).GetValue(pro, null) != null)
+                        {
+                            cmd.Parameters.AddWithValue(prop.Key, pro.GetType().GetProperty(prop.Key).GetValue(pro, null));
+                        }
+
+                        cmd.ExecuteNonQuery();
+                        cmd.Connection.Close();
+
+                    }
+                }
+            }
+        }
     }
 }

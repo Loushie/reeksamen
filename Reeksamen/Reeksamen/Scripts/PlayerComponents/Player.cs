@@ -16,15 +16,6 @@ namespace Reeksamen.Scripts.PlayerComponents
 {
     public class Player : Component, IGameListener
     {
-        private int number1 = 10;
-
-        public int Number1 { get { return number1; } set { number1 = value; } }
-
-        
-        private int number2 { get; set; }
-
-
-
         public float CurrentHealth { get; private set; }
         public float MaxHealth { get; private set; }
         
