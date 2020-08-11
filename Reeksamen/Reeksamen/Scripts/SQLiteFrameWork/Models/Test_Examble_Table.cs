@@ -7,21 +7,21 @@ using System.Threading.Tasks;
 
 namespace Reeksamen.Scripts.SQLiteFrameWork.Models
 {
-    public class PlayerStats_Table
+    class Test_Examble_Table
     {
+
         public int ID { get; set; }
+        public string Name { get; set; }
+        public bool YesNo { get; set; } //might wanna change the name depending of useaged
+        public int NumberInt { get; set; }
         public float Speed { get; set; }
         public float Health { get; set; }
+        public DateTime dateTime { get; set; }
+        public DatabaseEnums enums { get; set; }
 
-        public PlayerStats_Table()
+        public Test_Examble_Table()
         {
 
-        }
-
-        public PlayerStats_Table(float Health, float Speed)
-        {
-            this.Health = Health;
-            this.Speed = Speed;
         }
     }
 }

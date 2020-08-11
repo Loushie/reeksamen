@@ -1,4 +1,5 @@
 ﻿using Reeksamen.Scripts.Enums;
+using Reeksamen.Scripts.PlayerComponents;
 using Reeksamen.Scripts.SQLiteFrameWork;
 using Reeksamen.Scripts.SQLiteFrameWork.Factories;
 using Reeksamen.Scripts.SQLiteFrameWork.Models;
@@ -15,11 +16,27 @@ namespace Reeksamen.Scripts.SQLlite
 {
     public class SQLite_Database
     {
+        private static SQLite_Database instance;
+
+        private PlayerStats_Factory pf = new PlayerStats_Factory();
+        //Singleton Pattern for SQLite_Database
+        public static SQLite_Database Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new SQLite_Database();
+                }
+
+                return instance;
+            }
+        }
         public void RunSQLite()
         {
             //Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US"); //used incase we want floats to work properly in the database since . gets converted to , otherwise
             //DataBaseSetup();
-            PlayerStatsDatabase();
+            //PlayerStatsDatabase();
         }
 
         /*private void DataBaseSetup()
@@ -56,30 +73,26 @@ namespace Reeksamen.Scripts.SQLlite
             databaseCon.Close();
         }*/
 
-        private void PlayerStatsDatabase()
+        public void GetPlayerData(ref float health, ref float speed)
+        {
+            //Since we never know what ID the player has and there only is 1 player anyway we use GetAll
+            List<PlayerStats_Table> Listpt = pf.GetAll();
+            PlayerStats_Table pt = Listpt[0];
+
+            health = pt.Health;
+            speed = pt.Speed;
+        }
+        public void SetupPlayerInDatabase()
         {
             AutoTable<PlayerStats_Table> autoTable = new AutoTable<PlayerStats_Table>();
             autoTable.MakeTable();
 
-            PlayerStats_Factory pf = new PlayerStats_Factory();
-
-            PlayerStats_Table pt = new PlayerStats_Table("Player", true, 123, 43.12f, DateTime.Now, DatabaseEnums.DatabaseEnum01);
-            pf.Insert(pt);
-
-            pt = new PlayerStats_Table("Test", false, 23, 69.420f, DateTime.Now, DatabaseEnums.DatabaseEnum04);
-            pf.Insert(pt);
-
             List<PlayerStats_Table> Listpt = pf.GetAll();
 
-            foreach (PlayerStats_Table item in Listpt)
+            if (!(Listpt.Count > 0)) //if a player exsists
             {
-                Console.WriteLine(item.ID);
-                Console.WriteLine(item.Name);
-                Console.WriteLine(item.YesNo);
-                Console.WriteLine(item.NumberInt);
-                Console.WriteLine(item.NumberFloat);
-                Console.WriteLine(item.dateTime);
-                Console.WriteLine(item.enums);
+                PlayerStats_Table pt = new PlayerStats_Table(100f, 100f);
+                pf.Insert(pt);
             }
         }
     }

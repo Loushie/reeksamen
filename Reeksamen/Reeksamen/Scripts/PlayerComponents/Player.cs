@@ -76,11 +76,16 @@ namespace Reeksamen.Scripts.PlayerComponents
         private void LoadDatabaseStats()
         {
             //TODO Load Database Stats to Player
-            //Midlertidig Test Stats in class
+            float tmpMaxHealth = 0;
+            float tmpSpeed = 0;
 
-            MaxHealth = 100;
+            //Used ref since im unsure how to return 2 floats
+            SQLlite.SQLite_Database.Instance.GetPlayerData(ref tmpMaxHealth, ref tmpSpeed);
+            MaxHealth = tmpMaxHealth;
             CurrentHealth = MaxHealth;
-            this.speed = 100;
+            this.speed = tmpSpeed;
+
+            Console.WriteLine(MaxHealth);
         }
         public void TakeDmg(int dmg)
         {

@@ -74,6 +74,7 @@
     <Compile Include="Scripts\ObserverPattern\IGameListener.cs" />
     <Compile Include="Scripts\PlayerComponents\Player.cs" />
     <Compile Include="Scripts\Scenes\GameScenes\AndreasScene.cs" />
+    <Compile Include="Scripts\Scenes\GameScenes\GameScene.cs" />
     <Compile Include="Scripts\Scenes\GameScenes\LauTestScene.cs" />
     <Compile Include="Scripts\Scenes\GameScenes\PickScene.cs" />
     <Compile Include="Scripts\Scenes\GameScenes\RasmusTestScene.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Scripts\SQLiteFrameWork\Factories\PlayerStats_Factory.cs" />
     <Compile Include="Scripts\SQLiteFrameWork\Mapper.cs" />
     <Compile Include="Scripts\SQLiteFrameWork\Models\PlayerStats_Table.cs" />
+    <Compile Include="Scripts\SQLiteFrameWork\Models\Test_Examble_Table.cs" />
     <Compile Include="Scripts\SQLite\SQLite_Database.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -108,6 +110,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Scripts\SQLiteFrameWork\CustumeModels\" />
     <Folder Include="Scripts\StatePattern\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

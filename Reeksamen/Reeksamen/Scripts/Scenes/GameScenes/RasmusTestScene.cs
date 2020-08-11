@@ -23,15 +23,15 @@ namespace Reeksamen.Scripts.Scenes.GameScenes
 
         public override void Initialize()
         {
+            //SQL
+            SQLite_Database.Instance.SetupPlayerInDatabase();
+
             //RasmusTestHalloj();
             MakeWorld world = new MakeWorld();
             world.MakeNewWorld(this);
             //MakeWorld makes the world and places the player and enemies
             base.Initialize();
 
-            //SQL
-            SQLite_Database sQLite_Database = new SQLite_Database();
-            sQLite_Database.RunSQLite();
         }
 
         public override void OnSwitchAwayFromThisScene()

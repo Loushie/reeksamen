@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace Reeksamen.Scripts.Enemies
 {
@@ -58,7 +59,14 @@ namespace Reeksamen.Scripts.Enemies
             {
                 if (moveToPosition.X + safeGuardMovement > GameObject.Transform.Position.X && moveToPosition.X - safeGuardMovement < GameObject.Transform.Position.X && (moveToPosition.Y + safeGuardMovement > GameObject.Transform.Position.Y && moveToPosition.Y - safeGuardMovement < GameObject.Transform.Position.Y))
                 {
-                    GetNextPath();
+                    //GetNextPath();
+
+                    Thread t = new Thread(GetNextPath);
+                    t.IsBackground = true;
+                    t.Start();
+
+
+
                     /*if (moveToPosition.Y + safeGuardMovement > GameObject.Transform.Position.Y && moveToPosition.Y - safeGuardMovement < GameObject.Transform.Position.Y)
                     {
                         GetNextPath();
@@ -86,8 +94,8 @@ namespace Reeksamen.Scripts.Enemies
                     direction += new Vector2(0, -1);
                 }
 
-                Console.WriteLine(moveToPosition);
-                Console.WriteLine(path.Count);
+                //Console.WriteLine(moveToPosition);
+                //Console.WriteLine(path.Count);
 
 
                 //GameObject.Transform.Translate(direction * speed * GameWorld.Instance.DeltaTime);

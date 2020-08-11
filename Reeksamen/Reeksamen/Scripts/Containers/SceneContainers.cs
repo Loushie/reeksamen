@@ -1,4 +1,5 @@
-﻿using Reeksamen.Scripts.Enums;
+﻿using Microsoft.Xna.Framework;
+using Reeksamen.Scripts.Enums;
 using Reeksamen.Scripts.Scenes;
 using Reeksamen.Scripts.Scenes.GameScenes;
 using System;
@@ -22,6 +23,12 @@ namespace Reeksamen.Scripts.Containers
         }
         private void MakeScenes()
         {
+            GameScene gameScene = new GameScene()
+            {
+                Name = SceneEnumNames.GameScene.ToString()
+            };
+            Scenes.Add(gameScene);
+            
             PickScene pickScene = new PickScene()
             {
                 Name = SceneEnumNames.ScenePick.ToString()
